@@ -34,6 +34,11 @@ Trocar de Branch
 git checkout main
 ```
 
+Trocar de Branch e Criar uma nova
+```bash
+git checkout branch feat/feature3
+```
+
 <hr>
 
 Sincronizar com a branch main (remota)
