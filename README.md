@@ -81,3 +81,6 @@ git push origin feature/header
 <hr>
 
 IMPORTANTE: Para cada funcionalidade que for alterar gere uma nova branch com esse padrão feat/nomeDaAlteracao, onde feat representa feature, pode usar fix (correção) ou outros...
+
+FETCH → Apenas busca atualizações remotas (refresh)
+PULL  → Busca e aplica as atualizações na branch atual
