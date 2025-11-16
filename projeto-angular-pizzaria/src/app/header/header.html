@@ -1,9 +1,29 @@
 <header>
-  <h1>Pizzaly</h1>
+  <div class="logo-area">
+    <img src="/images/logo.png" alt="Logo Pizzaly" />
+    <h1>Pizzaly</h1>
+  </div>
+
   <nav class="menu">
     <a href="">OFERTAS</a>
     <a href="">HISTÓRICO</a>
-    <a href="">SOBRE-NOS</a>
-    <a id="perfil" href="">Usuário</a>
+    <a href="">SOBRE-NÓS</a>
+    <a id="cartH" href="#">
+      <img src="/icons/cart.png" alt="Carrinho" />
+      <span class="cart-count">10</span>
+    </a>
   </nav>
+
+  <div class="user-menu-container">
+    <button id="usernameH">Nome do Usuário <span class="arrow-down">▼</span></button>
+
+    <div id="userDropdown" class="user-menu-dropdown">
+      <div class="user-info">
+        <div class="username">NAME</div>
+        <div class="email">name@gmail.com</div>
+      </div>
+      <hr class="separator" />
+      <button class="menu-item logout-button">Sair</button>
+    </div>
+  </div>
 </header>

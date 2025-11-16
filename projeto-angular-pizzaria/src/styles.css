@@ -4,10 +4,10 @@ body {
   padding: 0;
   min-height: 100vh;
   flex-direction: column;
-  font-family: Arial, sans-serif;
-  background-color: #f0f2f5;
+  font-family: cursive;
+  background-color: #f1f2f1;
 }
-
+/* // #f0f2f5; */
 main {
   flex-grow: 1;
   display: flex;
@@ -15,4 +15,5 @@ main {
   align-items: center;
   padding: 1rem;
   margin: 0;
+  min-height: 87vh;
 }
