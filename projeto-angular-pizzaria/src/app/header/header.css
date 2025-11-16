@@ -5,7 +5,6 @@ header {
   padding: 5px 350px;
   background: linear-gradient(#009246, #004f26);
   width: 100%;
-  position: fixed;
   top: 0;
   z-index: 10;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
@@ -60,6 +59,7 @@ header {
 #usernameH:hover {
   text-shadow: 0 -1px 15px #003d1d, 0 -1px 10px #ffffff, 0 -1px 15px #ce2b37;
   filter: drop-shadow(0 1px 8px rgba(255, 255, 255, 0.3));
+  transform: translateY(-2px);
 }
 
 .menu a::after {
@@ -99,7 +99,11 @@ header {
 
 #cartH img {
   height: 25px;
-  width: auto;
+  transition: transform 0.2s ease; /* pra ficar suave */
+}
+
+#cartH:hover img {
+  transform: rotate(-35deg);
 }
 
 .cart-count {
@@ -112,17 +116,22 @@ header {
   margin: 0;
   border-radius: 100%;
   min-width: 10px;
+  min-height: 10px;
+  text-align: center;
   text-align: center;
   transform: translate(75%, -50%);
 }
 
 /* =================== */
 
+/* USER */
+
 .user-menu-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   position: relative;
+  flex: 1;
 }
 
 #usernameH {
@@ -215,4 +224,34 @@ header {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.account-container {
+  display: flex;
+  gap: 10px;
+}
+
+.account-container button {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 50px;
+  min-width: 120px;
+  padding: 10px 16px;
+
+  border-radius: 6px;
+  border: 2px solid #fff;
+  color: #fff;
+  background: transparent;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: all 0.15s ease-in-out;
+}
+
+.account-container button:hover {
+  text-shadow: 0 -1px 15px #003d1d, 0 -1px 10px #ffffff, 0 -1px 15px #ce2b37;
+  filter: drop-shadow(0 1px 8px rgba(255, 255, 255, 0.3));
+  transform: translateY(-2px);
+  background: #009246;
 }

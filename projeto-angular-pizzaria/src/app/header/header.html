@@ -5,16 +5,21 @@
   </div>
 
   <nav class="menu">
-    <a href="">OFERTAS</a>
-    <a href="">HISTÓRICO</a>
-    <a href="">SOBRE-NÓS</a>
+    <a routerLink="/offers">OFERTAS</a>
+    <a routerLink="/history">HISTÓRICO</a>
+    <a routerLink="/about-us">SOBRE-NÓS</a>
     <a id="cartH" href="#">
       <img src="/icons/cart.png" alt="Carrinho" />
-      <span class="cart-count">10</span>
+      <span class="cart-count">0</span>
     </a>
   </nav>
 
-  <div class="user-menu-container">
+  <div class="account-container">
+    <button id="createAccount" routerLink="/signin">CRIAR CONTA</button>
+    <button id="joinInAccount" routerLink="/login">ENTRAR</button>
+  </div>
+
+  <div class="user-menu-container" style="display: none">
     <button id="usernameH">Nome do Usuário <span class="arrow-down">▼</span></button>
 
     <div id="userDropdown" class="user-menu-dropdown">
