@@ -1,5 +1,4 @@
 export interface User {
-  id: string;
   email: string;
   password: string;
   name: string;
@@ -14,13 +13,7 @@ export interface Ingredient {
   name: string;
 }
 
-export interface CustomizationOptions {
-  /* For options like "Extra Cheese", "Gluten-Free Crust" use type "Extra" */
-  id: string;
-  type: string; // Ex: "Massa", "Molho", "Queijo", "Cobertura"
-  name: string;
-  additionalPrice: string; // Price added to the base price if this option is selected
-}
+export interface CustomizationOptions {} // Arrumar
 
 export interface Offer {
   id: string;
@@ -28,7 +21,7 @@ export interface Offer {
   priceBase: string;
   type: 'Broto' | 'Normal' | 'Família';
   ingredients: Ingredient[];
-  customizationOptions: CustomizationOptions[]; // Organize in front end by type
+  customizationOptions: CustomizationOptions[];
   description: string;
   images: string[]; // URLs
 }

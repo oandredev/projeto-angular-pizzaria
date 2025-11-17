@@ -3,36 +3,41 @@
     <h1>Cadastre-se</h1>
     <hr />
   </div>
+
   <p>Crie sua conta agora mesmo. Rápido e prático</p>
-  <form id="formSignin" onsubmit="return SaveUserData()">
+
+  <form #form="ngForm" id="formSignin" (ngSubmit)="TryRegisterUser()">
+    <!-- NOME -->
     <label for="name">Nome Completo <span style="color: red">*</span></label>
-    <small id="errorName" class="inputError">11323</small>
+    <small id="errorName" class="inputError"></small>
+
     <input
       type="text"
       name="name"
       id="name"
-      size="15"
       maxlength="50"
       required
-      oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, ''), NameIsValid(this.value), FormIsValid(this.form)"
-      onchange="UpdateFirstInput('name'), NameIsValid(this.value)"
+      [(ngModel)]="nameField"
+      (blur)="UpdateFirstInput('name')"
+      (input)="NameIsValid(nameField); checkForm()"
     />
-    <!-- Proibe números e simbolos-->
-    <label for="cpf">CPF (Cadastro de Pessoa Física) <span style="color: red">*</span></label>
+
+    <!-- CPF -->
+    <label for="cpf">CPF <span style="color: red">*</span></label>
     <small id="errorCPF" class="inputError"></small>
 
     <input
       type="text"
       name="cpf"
       id="cpf"
-      size="14"
       maxlength="14"
       required
-      placeholder="123.456.789-10"
-      oninput="this.value =
-            formatCPF(this.value), CPFIsValid(this.value), FormIsValid(this.form)"
-      onchange="UpdateFirstInput('cpf'), CPFIsValid(this.value)"
+      [(ngModel)]="cpfField"
+      (blur)="UpdateFirstInput('cpf')"
+      (input)="$event.target.value = formatCPF(cpfField); CPFIsValid(cpfField); checkForm()"
     />
+
+    <!-- EMAIL -->
     <label for="email">E-mail <span style="color: red">*</span></label>
     <small id="errorEmail" class="inputError"></small>
 
@@ -40,45 +45,49 @@
       type="email"
       name="email"
       id="email"
-      size="15"
       maxlength="50"
       required
-      oninput="FormIsValid(this.form)"
-      onchange="UpdateFirstInput('email'), EmailIsValid(this.value)"
+      [(ngModel)]="emailField"
+      (blur)="UpdateFirstInput('email')"
+      (input)="EmailIsValid(emailField); checkForm()"
     />
+
+    <!-- SENHA -->
     <label for="password">Senha <span style="color: red">*</span></label>
     <small id="errorPassword" class="inputError"></small>
+
     <div class="togglePasswordContainer" id="togglePasswordContainer1">
       <input
         type="password"
         name="password"
         id="password"
-        size="15"
         maxlength="50"
         required
-        oninput="PasswordIsValid(this.value),
-              FormIsValid(this.form), PasswordsAreValid()"
-        onchange="UpdateFirstInput('password'), PasswordIsValid(this.value)"
+        [(ngModel)]="passwordField"
+        (blur)="UpdateFirstInput('password')"
+        (input)="PasswordIsValid(passwordField); PasswordsAreValid(); checkForm()"
       />
 
       <button
         type="button"
         class="togglePasswordVisibility"
-        onclick="TogglePasswordVisibility(1)"
-        onmouseleave="TogglePasswordVisibility(1, true)"
+        (click)="TogglePasswordVisibility('1')"
+        (mouseleave)="TogglePasswordVisibility('1', true)"
       >
-        <img src="./icons/icon_show.png" alt="Mostrar Senha" id="show-icon-1" class="show-icon" />
+        <img src="../icons/icon_show.png" id="show-icon-1" class="show-icon" />
         <img
-          src="./icons/icon_hide.png"
-          alt="Ocultar Senha"
+          src="../icons/icon_hide.png"
           id="hide-icon-1"
           class="hide-icon"
           style="display: none"
         />
       </button>
     </div>
+
+    <!-- CONFIRMAR SENHA -->
     <label for="passwordConfirmation">Confirmação da Senha <span style="color: red">*</span></label>
     <small id="errorPasswordC" class="inputError"></small>
+
     <div class="togglePasswordContainer" id="togglePasswordContainer2">
       <input
         type="password"
@@ -86,27 +95,29 @@
         id="passwordConfirmation"
         maxlength="50"
         required
-        oninput="PasswordsAreValid(); FormIsValid(this.form)"
-        onchange="UpdateFirstInput('passwordC'); PasswordsAreValid(password, this)"
+        [(ngModel)]="passwordConfirmationField"
+        (blur)="UpdateFirstInput('passwordC')"
+        (input)="PasswordsAreValid(); checkForm()"
       />
 
       <button
         type="button"
         class="togglePasswordVisibility"
-        onclick="TogglePasswordVisibility(2)"
-        onmouseleave="TogglePasswordVisibility(2, true)"
+        (click)="TogglePasswordVisibility('2')"
+        (mouseleave)="TogglePasswordVisibility('2', true)"
       >
-        <img src="./icons/icon_show.png" alt="Mostrar senha" id="show-icon-2" class="show-icon" />
+        <img src="../icons/icon_show.png" id="show-icon-2" class="show-icon" />
         <img
-          src="./icons/icon_hide.png"
-          alt="Ocultar senha"
+          src="../icons/icon_hide.png"
           id="hide-icon-2"
           class="hide-icon"
           style="display: none"
         />
       </button>
     </div>
-    <button id="buttonSubmit" type="submit" disabled>ENTRAR</button>
+
+    <button id="buttonSubmit" type="submit" [disabled]="true">ENTRAR</button>
   </form>
-  <p id="loginRedirect">Já tem uma conta? <a href="../login/login.html">Conectar</a></p>
+
+  <p id="loginRedirect">Já tem uma conta? <a routerLink="/login">Conectar</a></p>
 </section>
