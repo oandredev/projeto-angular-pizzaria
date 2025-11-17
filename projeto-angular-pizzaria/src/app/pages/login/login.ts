@@ -1,11 +1,42 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { UserLoginService } from '../../core/services/userLogin/user-login';
 import { User } from '../../core/types/types';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
+  imports: [FormsModule],
 })
-export class Login {}
+export class Login {
+  emailField = '';
+  passwordField = '';
+  passwordVisible = false;
+  errorMessage = '';
+
+  constructor(private loginService: UserLoginService) {}
+
+  TogglePasswordVisibility(forceHide: boolean = false) {
+    this.passwordVisible = forceHide ? false : !this.passwordVisible;
+  }
+
+  ValidateLogin() {
+    this.loginService.tryLogin(this.emailField, this.passwordField).subscribe({
+      next: (user: User | null) => {
+        if (user) {
+          console.log('Login bem-sucedido', user);
+          this.loginService.setUser(user);
+          this.errorMessage = '';
+        } else {
+          // Aqui estou forçando o erro
+          throw (this.errorMessage = 'Email ou senha inválidos');
+        }
+      },
+      error: (err) => {
+        console.error(err);
+        this.errorMessage = 'Erro ao tentar login';
+      },
+    });
+  }
+}
