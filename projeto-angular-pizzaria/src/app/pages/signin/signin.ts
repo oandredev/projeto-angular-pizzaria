@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../core/types/types';
 import { UserRegister } from '../../core/services/userRegister/user-register';
@@ -32,10 +32,9 @@ export class Signin {
   passwordField = '';
   passwordConfirmationField = '';
 
-  constructor(private userRegister: UserRegister) {}
+  constructor(private userRegister: UserRegister, private router: Router) {}
 
   ngOnInit(): void {
-    // DOM pode ser acessado aqui
     this.alertName = document.getElementById('errorName')!;
     this.alertCPF = document.getElementById('errorCPF')!;
     this.alertEmail = document.getElementById('errorEmail')!;
@@ -302,6 +301,7 @@ export class Signin {
         this.userRegister.registerUser(newUser).subscribe({
           next: () => {
             console.log('Usuário registrado. -> ' + newUser.name);
+            this.router.navigate(['/login']);
           },
           error: () => {
             console.error('Falha ao registrar.');

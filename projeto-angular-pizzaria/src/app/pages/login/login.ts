@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { UserLoginService } from '../../core/services/userLogin/user-login';
 import { User } from '../../core/types/types';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrl: './login.css',
-  imports: [FormsModule],
+  imports: [RouterModule, FormsModule],
 })
 export class Login {
   emailField = '';
@@ -15,7 +16,7 @@ export class Login {
   passwordVisible = false;
   errorMessage = '';
 
-  constructor(private loginService: UserLoginService) {}
+  constructor(private loginService: UserLoginService, private router: Router) {}
 
   TogglePasswordVisibility(forceHide: boolean = false) {
     this.passwordVisible = forceHide ? false : !this.passwordVisible;
@@ -28,6 +29,7 @@ export class Login {
           console.log('Login bem-sucedido', user);
           this.loginService.setUser(user);
           this.errorMessage = '';
+          this.router.navigate(['/offers']);
         } else {
           // Aqui estou forçando o erro
           throw (this.errorMessage = 'Email ou senha inválidos');

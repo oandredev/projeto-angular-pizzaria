@@ -6,6 +6,13 @@
       "email": "joao@gmail.com",
       "password": "Teste12345Aa.",
       "cpf": "97405488064"
+    },
+    {
+      "id": "7126",
+      "name": "TesteTeste",
+      "email": "teste@gmail.com",
+      "password": "Teste12345Aa.",
+      "cpf": "47438691020"
     }
   ]
 }
