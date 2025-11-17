@@ -1,3 +1,11 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "d9d1",
+      "name": "Joao Teste",
+      "email": "joao@gmail.com",
+      "password": "Teste12345Aa.",
+      "cpf": "97405488064"
+    }
+  ]
 }
