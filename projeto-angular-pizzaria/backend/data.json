@@ -1,8 +1,5 @@
 {
-  "loggedUser": {
-    "id": "1",
-    "user": null
-  },
+  "loggedUser": null,
   "users": [
     {
       "id": "08e9",
