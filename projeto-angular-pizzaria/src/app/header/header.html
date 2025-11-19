@@ -20,15 +20,20 @@
   </div>
 
   <div class="user-menu-container" style="display: none">
-    <button id="usernameH">Nome do Usuário <span class="arrow-down">▼</span></button>
+    <button id="usernameH">
+      <span class="username username-btn">Nome do Usuário</span>
+      <span class="arrow-down">▼</span>
+    </button>
 
     <div id="userDropdown" class="user-menu-dropdown">
       <div class="user-info">
-        <div class="username">NAME</div>
-        <div class="email">name@gmail.com</div>
+        <div class="username username-dd">NAME</div>
+        <div class="email email-dd">name@gmail.com</div>
       </div>
+
       <hr class="separator" />
-      <button class="menu-item logout-button">Sair</button>
+
+      <button class="menu-item logout-button" (click)="logout()">Sair</button>
     </div>
   </div>
 </header>

@@ -23,21 +23,21 @@ export class Login {
   }
 
   ValidateLogin() {
+    const errorMessage = document.querySelector('#errorLoginOrPassword') as HTMLElement;
+
     this.loginService.tryLogin(this.emailField, this.passwordField).subscribe({
       next: (user: User | null) => {
         if (user) {
-          console.log('Login bem-sucedido', user);
+          errorMessage.textContent = '';
           this.loginService.setUser(user).subscribe();
           this.errorMessage = '';
           this.router.navigate(['/offers']);
         } else {
-          // Force error
-          throw (this.errorMessage = 'Email ou senha inválidos');
+          errorMessage.textContent = 'Email ou senha inválidos';
         }
       },
-      error: (err) => {
-        console.error(err);
-        this.errorMessage = 'Erro ao tentar login';
+      error: () => {
+        errorMessage.textContent = 'Erro ao fazer login';
       },
     });
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { User } from '../../types/types';
 
 @Injectable({
@@ -9,6 +9,8 @@ import { User } from '../../types/types';
 export class UserLoginService {
   private registerAPI = `http://localhost:3000/users`;
   private loginAPI = `http://localhost:3000/loggedUser`;
+
+  public _loggedUser = new BehaviorSubject<User | null>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -20,11 +22,13 @@ export class UserLoginService {
     );
   }
 
-  // Use PUT instead of POST to always keep only one item saved.
-  setUser(user: User) {
-    return this.http.put(`${this.loginAPI}`, {
-      id: '1',
-      user,
-    });
+  setUser(user: User | null) {
+    return this.http
+      .put(`${this.loginAPI}`, { id: 1, ...user })
+      .pipe(tap(() => this._loggedUser.next(user)));
+  }
+
+  logout() {
+    return this.setUser(null);
   }
 }
