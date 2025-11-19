@@ -27,11 +27,11 @@ export class Login {
       next: (user: User | null) => {
         if (user) {
           console.log('Login bem-sucedido', user);
-          this.loginService.setUser(user);
+          this.loginService.setUser(user).subscribe();
           this.errorMessage = '';
           this.router.navigate(['/offers']);
         } else {
-          // Aqui estou forçando o erro
+          // Force error
           throw (this.errorMessage = 'Email ou senha inválidos');
         }
       },

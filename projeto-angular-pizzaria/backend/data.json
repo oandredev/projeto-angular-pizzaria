@@ -1,18 +1,22 @@
 {
+  "loggedUser": {
+    "id": "1",
+    "user": null
+  },
   "users": [
     {
-      "id": "d9d1",
-      "name": "Joao Teste",
-      "email": "joao@gmail.com",
+      "id": "08e9",
+      "name": "André Rodrigues",
+      "email": "andre@gmail.com",
       "password": "Teste12345Aa.",
       "cpf": "97405488064"
     },
     {
-      "id": "7126",
+      "id": "2124",
       "name": "TesteTeste",
       "email": "teste@gmail.com",
       "password": "Teste12345Aa.",
-      "cpf": "47438691020"
+      "cpf": "03066374050"
     }
   ]
 }
