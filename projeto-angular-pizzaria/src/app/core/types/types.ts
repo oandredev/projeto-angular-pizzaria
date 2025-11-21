@@ -31,7 +31,7 @@ export interface Offer {
 }
 
 export interface CustomizedOffer {
-  offer: Offer;
+  offer: Offer | null;
   selectedCustomizations: CustomizationOptions[];
 }
 
