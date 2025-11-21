@@ -1,4 +1,11 @@
 {
+  "loggedUser": {
+    "id": "d9d1",
+    "name": "Joao Teste",
+    "email": "joao@gmail.com",
+    "password": "Teste12345Aa.",
+    "cpf": "97405488064"
+  },
   "users": [
     {
       "id": "d9d1",
@@ -147,7 +154,6 @@
         "https://cantinagiovannifreddo.com.br/wp-content/uploads/2023/09/PIZZA-DE-CALABRESA.webp"
       ],
       "customizationOptions": [
-        "2",
         "3",
         "4",
         "5",
@@ -163,7 +169,13 @@
         "18",
         "20"
       ],
-      "ingredients": ["1", "4", "19", "14", "20"]
+      "ingredients": [
+        "1",
+        "4",
+        "19",
+        "14",
+        "20"
+      ]
     },
     {
       "id": "2",
@@ -188,7 +200,13 @@
         "10",
         "11"
       ],
-      "ingredients": ["1", "4", "9", "10", "11"]
+      "ingredients": [
+        "1",
+        "4",
+        "9",
+        "10",
+        "11"
+      ]
     }
   ],
   "customizationOptions": [
@@ -298,7 +316,7 @@
       "id": "18",
       "type": "MOLHO",
       "name": "Molho de Tomate",
-      "value": "0.00"
+      "value": "1.50"
     },
     {
       "id": "19",
