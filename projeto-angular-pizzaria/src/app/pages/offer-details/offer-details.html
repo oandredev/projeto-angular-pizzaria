@@ -12,73 +12,24 @@
     </div>
 
     <div id="offerCustomization">
-      <h2>Customização</h2>
-
-      <h3>Borda</h3>
-      <label>
-        <input type="radio" name="borda" value="sem" checked />
-        Normal
-      </label>
-      <label>
-        <input type="radio" name="borda" value="catupiry" />
-        Catupiry (+R$4,00)
-      </label>
-      <label>
-        <input type="radio" name="borda" value="bacon" />
-        Bacon (+R$5,00)
-      </label>
-
-      <h3>Massa</h3>
-      <label>
-        <input type="radio" name="borda" value="sem" checked />
-        Normal
-      </label>
-      <label>
-        <input type="radio" name="borda" value="catupiry" />
-        Catupiry (+R$4,00)
-      </label>
-      <label>
-        <input type="radio" name="borda" value="bacon" />
-        Bacon (+R$5,00)
-      </label>
-
-      <h3>Molho</h3>
-      <label>
-        <input type="radio" name="borda" value="sem" checked />
-        Normal
-      </label>
-      <label>
-        <input type="radio" name="borda" value="catupiry" />
-        Catupiry (+R$4,00)
-      </label>
-      <label>
-        <input type="radio" name="borda" value="bacon" />
-        Bacon (+R$5,00)
-      </label>
-
-      <h3>Cobertura</h3>
-      <label>
-        <input type="radio" name="borda" value="sem" checked />
-        Normal
-      </label>
-      <label>
-        <input type="radio" name="borda" value="catupiry" />
-        Catupiry (+R$4,00)
-      </label>
-      <label>
-        <input type="radio" name="borda" value="bacon" />
-        Bacon (+R$5,00)
-      </label>
-
-      <h3>Adicionais</h3>
-      <label>
-        <input type="checkbox" name="adicional" value="azeitona" />
-        Azeitona Extra(+R$2,00)
-      </label>
-      <label>
-        <input type="checkbox" name="adicional" value="milho" />
-        Milho Extra(+R$2,50)
-      </label>
+      <h2>Personalize seu pedido:</h2>
+      <ng-container *ngFor="let type of ['BORDA', 'MASSA', 'MOLHO', 'EXTRA', 'SEM', 'QUEIJO_BASE']">
+        <div *ngIf="getCustomizationsByType(type).length">
+          <h3>{{ type }}</h3>
+          <div *ngFor="let opt of getCustomizationsByType(type); let i = index">
+            <label>
+              <input
+                [type]="opt.type === 'EXTRA' || opt.type === 'SEM' ? 'checkbox' : 'radio'"
+                [name]="type"
+                [value]="opt.name"
+                [checked]="i === 0 && opt.type !== 'EXTRA' && opt.type !== 'SEM'"
+              />
+              {{ opt.name + ' (+R$ ' + opt.value + ')' }}
+              <span *ngIf="opt.type === 'EXTRA'"></span>
+            </label>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 
