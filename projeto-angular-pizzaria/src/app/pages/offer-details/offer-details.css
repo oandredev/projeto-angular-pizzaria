@@ -1,0 +1,160 @@
+#offerDetails {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(350px, 1fr);
+  gap: 1.5rem 3rem;
+}
+
+#leftArea {
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+  border-top: 0.2rem solid #004f26;
+  border-bottom: 5px solid #ce2b37;
+  flex-direction: column;
+}
+
+#offerDescription {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+#offerDescription p {
+  width: 100%;
+  max-width: 100%;
+}
+.image-frame {
+  width: 100%;
+  height: 405px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#offerCustomization {
+  grid-column: 1;
+  grid-row: 2;
+  border-top: 4px solid;
+  border-image: linear-gradient(to right, #004f26, white, #ce2b37) 1;
+}
+
+/*Resume*/
+#resume {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: start;
+
+  position: sticky;
+  top: 5rem;
+
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+  max-height: calc(70vh);
+  overflow-y: auto;
+  min-height: 0;
+
+  border-top: 0.2rem solid #004f26;
+  border-bottom: 5px solid #ce2b37;
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 5.4rem;
+}
+
+#resume table {
+  border-collapse: collapse;
+}
+
+#resume table th {
+  padding: 0.6rem;
+  background-color: #bbbbbb;
+}
+
+#resume table td {
+  padding: 0.4rem;
+}
+
+#resume table td:has(button) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#resume table td:has(button) div {
+  flex: 1;
+}
+
+#resume table td button {
+  margin-left: auto;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.removeCustomization {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.4rem 0.7rem;
+  border: none;
+  border-radius: 6px;
+
+  background: #ce2b37;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+
+  cursor: pointer;
+
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.removeCustomization:hover {
+  background: #b32431;
+  transform: scale(1.07);
+}
+
+.removeCustomization:active {
+  transform: scale(0.94);
+}
+.itemValue {
+  text-align: center;
+}
+
+#addToCart {
+  background: #004f26;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 1.1rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 1;
+  transform: scale(0.98);
+  transition: 0.3s ease;
+}
+
+#addToCart:hover {
+  background: rgb(1, 99, 48);
+  transform: scale(1);
+}
+
+#addToCart:active {
+  transform: scale(0.96);
+  background: #004f26;
+}

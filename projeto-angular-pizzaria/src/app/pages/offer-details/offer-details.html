@@ -1,4 +1,124 @@
-<p>
-  offer-details works! OPÇÕES: DETALHES + CUSTOMIZAÇÃO NA MESMA PÁGINA OU DETALHES EM UMA PÁGINA E
-  CUSTOMIZAÇÃO EM OUTRA?
-</p>
+<section id="offerDetails">
+  <div id="leftArea">
+    <div id="offerDescription">
+      <h1 id="pizzaTitle">Pizza X</h1>
+
+      <div id="pizzaPreview" class="image-frame"><img [src]="pizzaImage" alt="Preview" /></div>
+      <p id="pizzaDescription"></p>
+      <p><b>Ingredientes:</b></p>
+      <p id="ingredients">-</p>
+      <p><b>Valor Base:</b></p>
+      <p id="baseValue">R$ 0,00</p>
+    </div>
+
+    <div id="offerCustomization">
+      <h2>Customização</h2>
+
+      <h3>Borda</h3>
+      <label>
+        <input type="radio" name="borda" value="sem" checked />
+        Normal
+      </label>
+      <label>
+        <input type="radio" name="borda" value="catupiry" />
+        Catupiry (+R$4,00)
+      </label>
+      <label>
+        <input type="radio" name="borda" value="bacon" />
+        Bacon (+R$5,00)
+      </label>
+
+      <h3>Massa</h3>
+      <label>
+        <input type="radio" name="borda" value="sem" checked />
+        Normal
+      </label>
+      <label>
+        <input type="radio" name="borda" value="catupiry" />
+        Catupiry (+R$4,00)
+      </label>
+      <label>
+        <input type="radio" name="borda" value="bacon" />
+        Bacon (+R$5,00)
+      </label>
+
+      <h3>Molho</h3>
+      <label>
+        <input type="radio" name="borda" value="sem" checked />
+        Normal
+      </label>
+      <label>
+        <input type="radio" name="borda" value="catupiry" />
+        Catupiry (+R$4,00)
+      </label>
+      <label>
+        <input type="radio" name="borda" value="bacon" />
+        Bacon (+R$5,00)
+      </label>
+
+      <h3>Cobertura</h3>
+      <label>
+        <input type="radio" name="borda" value="sem" checked />
+        Normal
+      </label>
+      <label>
+        <input type="radio" name="borda" value="catupiry" />
+        Catupiry (+R$4,00)
+      </label>
+      <label>
+        <input type="radio" name="borda" value="bacon" />
+        Bacon (+R$5,00)
+      </label>
+
+      <h3>Adicionais</h3>
+      <label>
+        <input type="checkbox" name="adicional" value="azeitona" />
+        Azeitona Extra(+R$2,00)
+      </label>
+      <label>
+        <input type="checkbox" name="adicional" value="milho" />
+        Milho Extra(+R$2,50)
+      </label>
+    </div>
+  </div>
+
+  <div id="resume">
+    <h2>Resumo</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>R$</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            <div>Pizza</div>
+          </td>
+          <td class="itemValue">35,00</td>
+        </tr>
+        <tr>
+          <td>
+            <div>Becon</div>
+            <button class="removeCustomization">x</button>
+          </td>
+          <td class="itemValue">5,00</td>
+        </tr>
+        <tr>
+          <td colspan="2"><hr /></td>
+        </tr>
+        <tr>
+          <td>
+            <div>Subtotal</div>
+          </td>
+          <td class="itemValue">40,00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button id="addToCart" (click)="addToCart()">Adicionar ao Carrinho</button>
+  </div>
+</section>
