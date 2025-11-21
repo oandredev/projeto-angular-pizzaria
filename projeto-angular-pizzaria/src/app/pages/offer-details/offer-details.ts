@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OffersService } from '../../core/services/offers/offers';
 import { UserLoginService } from '../../core/services/userLogin/user-login';
-import { Offer } from '../../core/types/types';
-import { concat, forkJoin, of, switchMap } from 'rxjs';
+import { Offer, CustomizationOptions } from '../../core/types/types';
+import { forkJoin, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-offer-details',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './offer-details.html',
   styleUrl: './offer-details.css',
 })
@@ -16,6 +17,7 @@ export class OfferDetails implements OnInit {
   private offer: Offer | null = null;
   private baseIngredients: string[] = [];
   pizzaImage: String = '';
+  customizations: CustomizationOptions[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -53,7 +55,7 @@ export class OfferDetails implements OnInit {
         next: (ingredients: any[]) => {
           if (this.offer) {
             this.baseIngredients = ingredients.filter((i) => i && i.name).map((i) => i.name);
-            this.loadCustomization(id);
+            this.loadCustomization();
           }
         },
         error: () => {
@@ -62,8 +64,24 @@ export class OfferDetails implements OnInit {
       });
   }
 
-  loadCustomization(id: String) {
-    this.updateHTMLElements();
+  private loadCustomization() {
+    if (!this.offer) return;
+
+    const customizationIds = this.offer.customizationOptions.map(String);
+
+    this.offersService.getCustomizationsOfferObjects(customizationIds).subscribe({
+      next: (customizations) => {
+        this.customizations = customizationIds
+          .map((id) => customizations.find((c) => String(c.id) === id))
+          .filter(Boolean) as CustomizationOptions[];
+
+        this.updateHTMLElements();
+      },
+      error: (err) => {
+        console.error('Erro ao carregar customizações', err);
+        this.forceRedirection();
+      },
+    });
   }
 
   updateHTMLElements() {
@@ -88,6 +106,10 @@ export class OfferDetails implements OnInit {
     } else {
       this.forceRedirection();
     }
+  }
+
+  getCustomizationsByType(type: string): CustomizationOptions[] {
+    return this.customizations.filter((c) => c.type === type);
   }
 
   // Used when something fails (offer unavailable or elements of HTML not found)

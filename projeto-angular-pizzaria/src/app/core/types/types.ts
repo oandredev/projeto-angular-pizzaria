@@ -9,13 +9,13 @@ export interface User {
 
 export interface Ingredient {
   id: string;
-  type: string; // Ex: "Massa", "Molho", "Queijo", "Cobertura"
+  type: string;
   name: string;
 }
 
 export interface CustomizationOptions {
   id: string;
-  type: string; // EXTRA ou SEM
+  type: string;
   name: string;
   value: string;
 }
@@ -24,7 +24,6 @@ export interface Offer {
   id: string;
   name: string;
   priceBase: string;
-  type: 'Broto' | 'Normal' | 'Família';
   ingredients: string[];
   customizationOptions: CustomizationOptions[];
   description: string;
