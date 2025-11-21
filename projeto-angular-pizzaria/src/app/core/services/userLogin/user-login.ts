@@ -31,4 +31,12 @@ export class UserLoginService {
   logout() {
     return this.setUser(null);
   }
+
+  isLogged(): Observable<boolean> {
+    return this._loggedUser.asObservable().pipe(map((user) => user !== null));
+  }
+
+  getLoggedUser(): User | null {
+    return this._loggedUser.value;
+  }
 }

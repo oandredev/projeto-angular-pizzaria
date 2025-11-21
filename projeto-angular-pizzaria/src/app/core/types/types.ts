@@ -13,14 +13,19 @@ export interface Ingredient {
   name: string;
 }
 
-export interface CustomizationOptions {} // Arrumar
+export interface CustomizationOptions {
+  id: string;
+  type: string; // EXTRA ou SEM
+  name: string;
+  value: string;
+}
 
 export interface Offer {
   id: string;
   name: string;
   priceBase: string;
   type: 'Broto' | 'Normal' | 'Família';
-  ingredients: Ingredient[];
+  ingredients: string[];
   customizationOptions: CustomizationOptions[];
   description: string;
   images: string[]; // URLs
