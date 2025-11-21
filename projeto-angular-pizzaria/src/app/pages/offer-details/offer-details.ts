@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OffersService } from '../../core/services/offers/offers';
 import { UserLoginService } from '../../core/services/userLogin/user-login';
-import { Offer, CustomizationOptions } from '../../core/types/types';
+import { Offer, CustomizationOptions, CustomizedOffer } from '../../core/types/types';
 import { forkJoin, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -146,7 +146,6 @@ export class OfferDetails implements OnInit {
   }
 
   get isFormValid(): boolean {
-    // pegar os tipos obrigatórios que existem na pizza
     const mandatoryTypes = Array.from(
       new Set(
         this.customizationsAvailable
@@ -154,8 +153,6 @@ export class OfferDetails implements OnInit {
           .map((opt) => opt.type)
       )
     );
-
-    // validar se cada tipo obrigatório tem pelo menos uma seleção
     return mandatoryTypes.every((type) =>
       this.customizationsSelecteds.some((sel) => sel.type === type)
     );
@@ -163,7 +160,11 @@ export class OfferDetails implements OnInit {
 
   addToCart() {
     this.loginService.isLogged().subscribe((isLoggedIn: boolean) => {
-      if (isLoggedIn) {
+      if (isLoggedIn && this.isFormValid) {
+        const customizedOffer: CustomizedOffer = {
+          offer: this.offer ?? null,
+          selectedCustomizations: this.customizationsSelecteds,
+        };
       } else {
         alert('Você não está logado. Faça login para adicionar ao carrinho');
       }
