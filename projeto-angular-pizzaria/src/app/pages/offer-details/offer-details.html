@@ -1,14 +1,16 @@
 <section id="offerDetails">
   <div id="leftArea">
     <div id="offerDescription">
-      <h1 id="pizzaTitle">Pizza X</h1>
+      <h1 id="pizzaTitle">{{ offer?.name }}</h1>
 
-      <div id="pizzaPreview" class="image-frame"><img [src]="pizzaImage" alt="Preview" /></div>
-      <p id="pizzaDescription"></p>
+      <div id="pizzaPreview" class="image-frame">
+        <img [src]="offer?.images?.[0] || ''" alt="Preview" />
+      </div>
+      <p id="pizzaDescription">{{ offer?.description }}</p>
       <p><b>Ingredientes:</b></p>
-      <p id="ingredients">-</p>
+      <p id="ingredients">{{ baseIngredients || '' }}</p>
       <p><b>Valor Base:</b></p>
-      <p id="baseValue">R$ 0,00</p>
+      <p id="baseValue">R$ {{ offer?.priceBase }}</p>
     </div>
 
     <div id="offerCustomization">
@@ -16,16 +18,17 @@
       <ng-container *ngFor="let type of ['BORDA', 'MASSA', 'MOLHO', 'EXTRA', 'SEM', 'QUEIJO_BASE']">
         <div *ngIf="getCustomizationsByType(type).length">
           <h3>{{ type }}</h3>
-          <div *ngFor="let opt of getCustomizationsByType(type); let i = index">
+          <div *ngFor="let opt of getCustomizationsByType(type)">
             <label>
               <input
                 [type]="opt.type === 'EXTRA' || opt.type === 'SEM' ? 'checkbox' : 'radio'"
                 [name]="type"
                 [value]="opt.name"
-                [checked]="i === 0 && opt.type !== 'EXTRA' && opt.type !== 'SEM'"
+                [checked]="isSelected(opt)"
+                (change)="refreshPreviewOfCustomization(opt)"
+                [required]="opt.type !== 'EXTRA' && opt.type !== 'SEM'"
               />
               {{ opt.name + ' (+R$ ' + opt.value + ')' }}
-              <span *ngIf="opt.type === 'EXTRA'"></span>
             </label>
           </div>
         </div>
@@ -33,7 +36,7 @@
     </div>
   </div>
 
-  <div id="resume">
+  <div id="summary">
     <h2>Resumo</h2>
 
     <table>
@@ -47,29 +50,33 @@
       <tbody>
         <tr>
           <td>
-            <div>Pizza</div>
+            <div>▸ {{ offer?.name }}</div>
           </td>
-          <td class="itemValue">35,00</td>
+          <td class="itemValue">{{ offer?.priceBase }}</td>
         </tr>
+        @for (item of customizationsSelecteds; track item){
         <tr>
           <td>
-            <div>Becon</div>
-            <button class="removeCustomization">x</button>
+            <div>▸ {{ item.name }}</div>
+            <button class="removeCustomization" (click)="removeCustomization(item)">x</button>
           </td>
-          <td class="itemValue">5,00</td>
+          <td class="itemValue">{{ item.value }}</td>
         </tr>
+        }
         <tr>
           <td colspan="2"><hr /></td>
         </tr>
         <tr>
           <td>
-            <div>Subtotal</div>
+            <div>Subtotal:</div>
           </td>
-          <td class="itemValue">40,00</td>
+          <td id="subtotal">R$ {{ subtotal }}</td>
         </tr>
       </tbody>
     </table>
 
-    <button id="addToCart" (click)="addToCart()">Adicionar ao Carrinho</button>
+    <button [disabled]="!isFormValid" type="button" id="addToCart" (click)="addToCart()">
+      Adicionar ao Carrinho
+    </button>
   </div>
 </section>

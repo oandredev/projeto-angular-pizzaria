@@ -48,8 +48,8 @@
   border-image: linear-gradient(to right, #004f26, white, #ce2b37) 1;
 }
 
-/*Resume*/
-#resume {
+/*Summary*/
+#summary {
   grid-column: 2;
   grid-row: 1 / span 2;
   align-self: start;
@@ -73,31 +73,31 @@
   margin-top: 5.4rem;
 }
 
-#resume table {
+#summary table {
   border-collapse: collapse;
 }
 
-#resume table th {
+#summary table th {
   padding: 0.6rem;
   background-color: #bbbbbb;
 }
 
-#resume table td {
+#summary table td {
   padding: 0.4rem;
 }
 
-#resume table td:has(button) {
+#summary table td:has(button) {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
 }
 
-#resume table td:has(button) div {
+#summary table td:has(button) div {
   flex: 1;
 }
 
-#resume table td button {
+#summary table td button {
   margin-left: auto;
   padding: 4px 8px;
   font-size: 12px;
@@ -131,7 +131,8 @@
 .removeCustomization:active {
   transform: scale(0.94);
 }
-.itemValue {
+.itemValue,
+#subtotal {
   text-align: center;
 }
 
@@ -149,12 +150,17 @@
   transition: 0.3s ease;
 }
 
-#addToCart:hover {
+#addToCart:disabled {
+  transform: scale(0.96);
+  opacity: 0.5;
+}
+
+#addToCart:valid:hover {
   background: rgb(1, 99, 48);
   transform: scale(1);
 }
 
-#addToCart:active {
+#addToCart:valid:active {
   transform: scale(0.96);
   background: #004f26;
 }
