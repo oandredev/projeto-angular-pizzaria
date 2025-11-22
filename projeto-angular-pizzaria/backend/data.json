@@ -1,10 +1,10 @@
 {
   "loggedUser": {
-    "id": "d9d1",
-    "name": "Joao Teste",
-    "email": "joao@gmail.com",
-    "password": "Teste12345Aa.",
-    "cpf": "97405488064"
+    "id": "bf22",
+    "name": "Fernanda M",
+    "email": "fernanda.m@pizzaly.com.br",
+    "password": "Fe123456@",
+    "cpf": "41618938177"
   },
   "users": [
     {
@@ -20,6 +20,13 @@
       "email": "teste@gmail.com",
       "password": "Teste12345Aa.",
       "cpf": "47438691020"
+    },
+    {
+      "id": "bf22",
+      "name": "Fernanda M",
+      "email": "fernanda.m@pizzaly.com.br",
+      "password": "Fe123456@",
+      "cpf": "41618938177"
     }
   ],
   "ingredients": [
