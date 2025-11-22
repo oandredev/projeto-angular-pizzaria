@@ -364,14 +364,10 @@
   ],
   "cart": [
     {
-      "id": "939e"
-    },
-    {
-      "id": "1e79",
+      "id": "68e8",
       "idUser": "d9d1",
       "items": [
         {
-          "id": "b0221472-13e6-48ca-8a21-0646fa449ce3",
           "idUser": "d9d1",
           "customizedOffer": {
             "offer": {
@@ -426,39 +422,44 @@
                 "value": "1.50"
               },
               {
+                "id": "11",
+                "type": "EXTRA",
+                "name": "Azeitona Extra",
+                "value": "2.00"
+              },
+              {
+                "id": "6",
+                "type": "EXTRA",
+                "name": "Bacon Extra",
+                "value": "5.00"
+              },
+              {
                 "id": "5",
                 "type": "EXTRA",
                 "name": "Calabresa Extra",
                 "value": "5.00"
-              },
-              {
-                "id": "4",
-                "type": "EXTRA",
-                "name": "Mussarela Extra",
-                "value": "6.00"
               }
             ]
           },
-          "quantity": "2",
-          "subtotal": "93.00"
+          "quantity": "1",
+          "subtotal": "47.50"
         }
       ],
-      "valueTotal": "93.00",
+      "valueTotal": "47.50",
       "address": "",
       "paymentMethod": "",
-      "date": "2025-11-22T03:01:08.185Z"
+      "date": ""
     }
   ],
   "history": [
     {
-      "id": "08bf",
+      "id": "1f36",
       "idUser": "d9d1",
       "cart": {
-        "id": "1e79",
+        "id": "68e8",
         "idUser": "d9d1",
         "items": [
           {
-            "id": "b0221472-13e6-48ca-8a21-0646fa449ce3",
             "idUser": "d9d1",
             "customizedOffer": {
               "offer": {
@@ -507,10 +508,10 @@
                   "value": "2.00"
                 },
                 {
-                  "id": "18",
+                  "id": "20",
                   "type": "MOLHO",
-                  "name": "Molho de Tomate",
-                  "value": "1.50"
+                  "name": "Molho Barbecue",
+                  "value": "2.00"
                 },
                 {
                   "id": "5",
@@ -519,21 +520,39 @@
                   "value": "5.00"
                 },
                 {
+                  "id": "6",
+                  "type": "EXTRA",
+                  "name": "Bacon Extra",
+                  "value": "5.00"
+                },
+                {
+                  "id": "11",
+                  "type": "EXTRA",
+                  "name": "Azeitona Extra",
+                  "value": "2.00"
+                },
+                {
                   "id": "4",
                   "type": "EXTRA",
                   "name": "Mussarela Extra",
                   "value": "6.00"
+                },
+                {
+                  "id": "3",
+                  "type": "SEM",
+                  "name": "Sem Orégano",
+                  "value": "0.00"
                 }
               ]
             },
-            "quantity": "2",
-            "subtotal": "93.00"
+            "quantity": "4",
+            "subtotal": "216"
           }
         ],
-        "valueTotal": "93.00",
-        "address": "Rua Teste, 123",
+        "valueTotal": "216",
+        "address": "Teste",
         "paymentMethod": "credito",
-        "date": "2025-11-22T21:52:18.784Z"
+        "date": "22/11/2025, 19:26"
       },
       "status": "Preparando"
     }

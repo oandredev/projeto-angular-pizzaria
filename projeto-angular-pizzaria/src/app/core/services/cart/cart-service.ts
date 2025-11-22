@@ -102,6 +102,26 @@ export class CartService {
 
   /*==================================================== */
 
+  clearCart(): Observable<Cart> {
+    if (!this.loggedUserId) return throwError(() => new Error('Usuário não logado.'));
+
+    return this.getCartByUser(this.loggedUserId).pipe(
+      switchMap((cart) => {
+        if (!cart) return throwError(() => new Error('Carrinho não encontrado.'));
+
+        const updated: Cart = {
+          ...cart,
+          items: [],
+          valueTotal: '0.00',
+        };
+
+        return this.http.put<Cart>(`${this.cartAPI}/${cart.id}`, updated);
+      })
+    );
+  }
+
+  /*==================================================== */
+
   private getCartByUser(idUser: string): Observable<Cart | null> {
     return this.http
       .get<Cart[]>(this.cartAPI)
@@ -172,7 +192,12 @@ export class CartService {
           valueTotal: String(this.calculateTotal(items).toFixed(2)),
         };
 
-        cart.date = new Date().toISOString();
+        const dateFormated = new Intl.DateTimeFormat('pt-BR', {
+          dateStyle: 'short',
+          timeStyle: 'short',
+        }).format(new Date());
+
+        cart.date = String(dateFormated);
 
         return this.http.put<Cart>(`${this.cartAPI}/${cart.id}`, updated);
       })
