@@ -1,0 +1,203 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Cart, CartItem, CustomizedOffer } from '../../types/types';
+import { Observable, switchMap, map, throwError } from 'rxjs';
+import { UserLoginService } from '../userLogin/user-login';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CartService {
+  // APIs
+  private cartAPI = 'http://localhost:3000/cart';
+
+  // Vars
+  private loggedUserId: string | null = null;
+
+  constructor(private http: HttpClient, private loginService: UserLoginService) {
+    this.loginService._loggedUser.subscribe((user) => {
+      this.loggedUserId = user?.id ?? null;
+    });
+  }
+
+  /*==================================================== */
+
+  addItem(customizedOffer: CustomizedOffer): Observable<Cart> {
+    if (!this.loggedUserId) {
+      return throwError(() => new Error('Usuário não logado.'));
+    }
+
+    const newItem: CartItem = {
+      idUser: this.loggedUserId,
+      customizedOffer,
+      quantity: '1',
+      subtotal: '0.00',
+    };
+
+    return this.addItemForUser(this.loggedUserId, newItem);
+  }
+
+  /*==================================================== */
+
+  private addItemForUser(idUser: string, item: CartItem): Observable<Cart> {
+    return this.getCartByUser(idUser).pipe(
+      switchMap((cart) => {
+        if (!cart) {
+          return this.createCart(idUser).pipe(
+            switchMap((newCart) => this.addOrUpdateItem(newCart, item))
+          );
+        }
+
+        return this.addOrUpdateItem(cart, item);
+      })
+    );
+  }
+
+  /*==================================================== */
+
+  private addOrUpdateItem(cart: Cart, item: CartItem): Observable<Cart> {
+    const items = [...(cart.items ?? [])];
+
+    const index = items.findIndex(
+      (i) =>
+        i.customizedOffer.offer?.id === item.customizedOffer.offer?.id &&
+        JSON.stringify(i.customizedOffer.selectedCustomizations) ===
+          JSON.stringify(item.customizedOffer.selectedCustomizations)
+    );
+
+    if (index !== -1) {
+      const currentQty = Number(items[index].quantity);
+      const addedQty = Number(item.quantity);
+
+      items[index].quantity = String(currentQty + addedQty);
+      items[index].subtotal = String(this.calculateItemSubtotal(items[index]).toFixed(2));
+    } else {
+      item.subtotal = String(this.calculateItemSubtotal(item).toFixed(2));
+      items.push(item);
+    }
+
+    const updated: Cart = {
+      ...cart,
+      items,
+      valueTotal: String(this.calculateTotal(items).toFixed(2)),
+    };
+
+    return this.http.put<Cart>(`${this.cartAPI}/${cart.id}`, updated);
+  }
+
+  /*==================================================== */
+
+  private createCart(idUser: string): Observable<Cart> {
+    const payload: Omit<Cart, 'id'> = {
+      idUser,
+      items: [],
+      valueTotal: '0.00',
+      address: '',
+      paymentMethod: '',
+      date: '',
+    };
+
+    return this.http.post<Cart>(this.cartAPI, payload);
+  }
+
+  /*==================================================== */
+
+  private getCartByUser(idUser: string): Observable<Cart | null> {
+    return this.http
+      .get<Cart[]>(this.cartAPI)
+      .pipe(map((carts) => carts.find((c) => c.idUser === idUser) || null));
+  }
+
+  getCartOfLoggedUser() {
+    if (!this.loggedUserId) return throwError(() => new Error('Usuário não logado.'));
+    return this.getCartByUser(this.loggedUserId);
+  }
+
+  /*==================================================== */
+
+  private parsePrice(value: any): number {
+    if (value === null || value === undefined) return 0;
+
+    let str = String(value).trim();
+
+    str = str.replace('R$', '').replace(/\s/g, '');
+    str = str.replace(',', '.');
+
+    const n = Number(str);
+    return isNaN(n) ? 0 : n;
+  }
+
+  /*==================================================== */
+
+  private calculateItemSubtotal(item: CartItem): number {
+    const offer = item.customizedOffer.offer;
+    if (!offer) return 0;
+
+    const base = this.parsePrice(offer.priceBase);
+
+    const customizationsTotal = item.customizedOffer.selectedCustomizations.reduce(
+      (sum, opt) => sum + this.parsePrice(opt.value),
+      0
+    );
+
+    const quantity = Number(item.quantity);
+
+    return (base + customizationsTotal) * quantity;
+  }
+
+  private calculateTotal(items: CartItem[]): number {
+    return items.reduce((acc, item) => acc + this.calculateItemSubtotal(item), 0);
+  }
+
+  /*==================================================== */
+
+  updateCartItem(item: CartItem): Observable<Cart> {
+    if (!this.loggedUserId) return throwError(() => new Error('Usuário não logado.'));
+
+    return this.getCartByUser(this.loggedUserId).pipe(
+      switchMap((cart) => {
+        if (!cart) return throwError(() => new Error('Carrinho não encontrado.'));
+
+        const items = [...(cart.items ?? [])];
+        const index = items.findIndex((i) => i.id === item.id);
+
+        if (index === -1) return throwError(() => new Error('Item não encontrado no carrinho.'));
+
+        items[index].quantity = String(item.quantity);
+        items[index].subtotal = String(this.calculateItemSubtotal(item).toFixed(2));
+
+        const updated: Cart = {
+          ...cart,
+          items,
+          valueTotal: String(this.calculateTotal(items).toFixed(2)),
+        };
+
+        cart.date = new Date().toISOString();
+
+        return this.http.put<Cart>(`${this.cartAPI}/${cart.id}`, updated);
+      })
+    );
+  }
+
+  /*==================================================== */
+
+  removeCartItem(itemId: string): Observable<Cart> {
+    if (!this.loggedUserId) return throwError(() => new Error('Usuário não logado.'));
+
+    return this.getCartByUser(this.loggedUserId).pipe(
+      switchMap((cart) => {
+        if (!cart) return throwError(() => new Error('Carrinho não encontrado.'));
+
+        const items = (cart.items ?? []).filter((i) => i.id !== itemId);
+
+        const updated: Cart = {
+          ...cart,
+          items,
+          valueTotal: String(this.calculateTotal(items).toFixed(2)),
+        };
+
+        return this.http.put<Cart>(`${this.cartAPI}/${cart.id}`, updated);
+      })
+    );
+  }
+}

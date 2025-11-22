@@ -155,12 +155,12 @@
   opacity: 0.5;
 }
 
-#addToCart:valid:hover {
+#addToCart:enabled:hover {
   background: rgb(1, 99, 48);
   transform: scale(1);
 }
 
-#addToCart:valid:active {
+#addToCart:enabled:active {
   transform: scale(0.96);
   background: #004f26;
 }

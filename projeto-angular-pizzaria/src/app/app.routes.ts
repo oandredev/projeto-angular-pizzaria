@@ -5,7 +5,7 @@ import { Offers } from './pages/offers/offers';
 import { OfferDetails } from './pages/offer-details/offer-details';
 import { History } from './pages/history/history';
 import { AboutUs } from './pages/about-us/about-us';
-import { Cart } from './pages/cart/cart';
+import { CartView } from './pages/cart/cart';
 
 export const routes: Routes = [
   { path: '', component: Offers, title: 'Ofertas' }, // Página inicial
@@ -15,6 +15,6 @@ export const routes: Routes = [
   { path: 'offer-details/:id', component: OfferDetails, title: 'Detalhes da Oferta' },
   { path: 'history', component: History, title: 'Histórico' },
   { path: 'about-us', component: AboutUs, title: 'Sobre Nós' },
-  { path: 'cart', component: Cart, title: 'Carrinho' },
+  { path: 'cart', component: CartView, title: 'Carrinho' },
   { path: '**', redirectTo: '', pathMatch: 'full' }, // 404
 ];

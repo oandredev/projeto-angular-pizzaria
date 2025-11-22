@@ -1,4 +1,5 @@
 export interface User {
+  id?: string;
   email: string;
   password: string;
   name: string;
@@ -38,26 +39,27 @@ export interface CustomizedOffer {
 /*-----------------------------------------------------------------------------------*/
 
 export interface CartItem {
-  id: string;
+  id?: string;
   idUser: string;
   customizedOffer: CustomizedOffer;
   quantity: string;
+  subtotal: string;
 }
 
 export interface Cart {
-  id: string;
+  id?: string;
   idUser: string;
-  items: CartItem[];
-  valueTotal: string;
-  address: string;
-  date: string;
-  paymentMethod: string;
+  items?: CartItem[];
+  valueTotal?: string;
+  address?: string;
+  date?: string;
+  paymentMethod?: string;
 }
 
 /*-----------------------------------------------------------------------------------*/
 
 export interface History {
-  id: string;
+  id?: string;
   idUser: string;
   cart: Cart;
   status: 'Preparando' | 'Entregue';
