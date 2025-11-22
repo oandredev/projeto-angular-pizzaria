@@ -6,6 +6,8 @@ import { Cart, CartItem, History } from '../../core/types/types';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router, RouterModule } from '@angular/router';
+import { Observable, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -27,7 +29,8 @@ export class CartView implements OnInit {
     private cartService: CartService,
     private historyService: HistoryService,
     private http: HttpClient,
-    private loginService: UserLoginService
+    private loginService: UserLoginService,
+    private router: Router
   ) {
     this.loginService._loggedUser.subscribe((user) => {
       this.loggedUserId = user?.id ?? null;
@@ -136,24 +139,46 @@ export class CartView implements OnInit {
   }
 
   finishOrder() {
-    if (this.isOrderValid()) {
-      if (this.cart) {
-        this.cart.address = this.address;
-        this.cart.paymentMethod = this.paymentMethod;
-        this.cart.date = new Date().toISOString();
-      }
-
-      const newHistory: History = {
-        idUser: String(this.loggedUserId),
-        cart: this.cart!,
-        status: 'Preparando',
-      };
-
-      this.historyService.saveHistory(newHistory).subscribe();
-    } else {
-      alert(
-        'Por favor, verifique se o carrinho não está vazio, se o endereço e a forma de pagamento (incluindo parcelas, se for Crédito) foram preenchidos.'
-      );
+    if (!this.isOrderValid()) {
+      alert('Por favor, verifique se o carrinho não está vazio...');
+      return;
     }
+
+    if (this.cart) {
+      this.cart.address = this.address;
+      this.cart.paymentMethod = this.paymentMethod;
+
+      const dateFormated = new Intl.DateTimeFormat('pt-BR', {
+        dateStyle: 'short',
+        timeStyle: 'short',
+      }).format(new Date());
+
+      this.cart.date = String(dateFormated);
+    }
+
+    const newHistory: History = {
+      idUser: String(this.loggedUserId),
+      cart: this.cart!,
+      status: 'Preparando',
+    };
+
+    this.historyService.saveHistory(newHistory).subscribe({
+      next: () => {
+        // Limpa carrinho local e backend
+        this.cartService.clearCart().subscribe({
+          next: (updatedCart) => {
+            this.cart = updatedCart; // cart agora vazio
+            // redireciona
+            if (this.paymentMethod === 'pix') {
+              this.router.navigate(['/paymentQRCode']);
+            } else {
+              this.router.navigate(['/purchaseConfirmation']);
+            }
+          },
+          error: (err) => console.error('Erro ao limpar carrinho:', err),
+        });
+      },
+      error: (err) => console.error('Erro ao salvar histórico:', err),
+    });
   }
 }
