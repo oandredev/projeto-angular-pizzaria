@@ -1,1 +1,21 @@
-<p>offers works!</p>
+<div class="offers-grid">
+    <div 
+        *ngFor="let pizza of pizzas" 
+        class="pizza-card"
+        (click)="goToDetails(pizza.id)"> 
+        <div class="image-container">
+            <img 
+                [src]="pizza.imageUrl" 
+                [alt]="'Imagem da ' + pizza.name" 
+                class="pizza-image">
+        </div>
+
+        <div class="card-content">
+            <h3>{{ pizza.name }}</h3> 
+            
+            <p class="price">R$ {{ pizza.price | number:'1.2-2' }}</p>
+            
+            <button class="details-button">Ver Detalhes</button>
+        </div>
+    </div>
+</div>
