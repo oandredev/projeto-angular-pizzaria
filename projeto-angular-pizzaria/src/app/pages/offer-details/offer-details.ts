@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
+import { forkJoin, of, switchMap } from 'rxjs';
 import { OffersService } from '../../core/services/offers/offers';
 import { UserLoginService } from '../../core/services/userLogin/user-login';
+import { CartService } from '../../core/services/cart/cart-service';
 import { Offer, CustomizationOptions, CustomizedOffer } from '../../core/types/types';
-import { forkJoin, of, switchMap } from 'rxjs';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-offer-details',
@@ -14,18 +14,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './offer-details.css',
 })
 export class OfferDetails implements OnInit {
+  /* Vars */
   offer: Offer | null = null;
   baseIngredients: string = '';
   customizationsAvailable: CustomizationOptions[] = [];
   customizationsSelecteds: CustomizationOptions[] = [];
-
   subtotal: String = '0.00';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private offersService: OffersService,
-    private loginService: UserLoginService
+    private loginService: UserLoginService,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -162,9 +163,13 @@ export class OfferDetails implements OnInit {
     this.loginService.isLogged().subscribe((isLoggedIn: boolean) => {
       if (isLoggedIn && this.isFormValid) {
         const customizedOffer: CustomizedOffer = {
-          offer: this.offer ?? null,
+          offer: this.offer!,
           selectedCustomizations: this.customizationsSelecteds,
         };
+
+        this.cartService.addItem(customizedOffer).subscribe(() => {
+          console.log('Item adicionado!');
+        });
       } else {
         alert('Você não está logado. Faça login para adicionar ao carrinho');
       }

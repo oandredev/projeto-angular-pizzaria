@@ -361,5 +361,181 @@
       "name": "Gorgonzola",
       "value": "2.50"
     }
+  ],
+  "cart": [
+    {
+      "id": "939e"
+    },
+    {
+      "id": "1e79",
+      "idUser": "d9d1",
+      "items": [
+        {
+          "id": "b0221472-13e6-48ca-8a21-0646fa449ce3",
+          "idUser": "d9d1",
+          "customizedOffer": {
+            "offer": {
+              "id": "1",
+              "name": "Pizza de Calabresa",
+              "priceBase": "27.00",
+              "description": "Calabresa bem temperada, cebolas douradas, orégano e mussarela derretida.",
+              "images": [
+                "https://cantinagiovannifreddo.com.br/wp-content/uploads/2023/09/PIZZA-DE-CALABRESA.webp"
+              ],
+              "customizationOptions": [
+                "3",
+                "4",
+                "5",
+                "6",
+                "21",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "20"
+              ],
+              "ingredients": [
+                "1",
+                "4",
+                "19",
+                "14",
+                "20"
+              ]
+            },
+            "selectedCustomizations": [
+              {
+                "id": "14",
+                "type": "BORDA",
+                "name": "Borda Catupiry",
+                "value": "5.00"
+              },
+              {
+                "id": "17",
+                "type": "MASSA",
+                "name": "Massa Grossa",
+                "value": "2.00"
+              },
+              {
+                "id": "18",
+                "type": "MOLHO",
+                "name": "Molho de Tomate",
+                "value": "1.50"
+              },
+              {
+                "id": "5",
+                "type": "EXTRA",
+                "name": "Calabresa Extra",
+                "value": "5.00"
+              },
+              {
+                "id": "4",
+                "type": "EXTRA",
+                "name": "Mussarela Extra",
+                "value": "6.00"
+              }
+            ]
+          },
+          "quantity": "2",
+          "subtotal": "93.00"
+        }
+      ],
+      "valueTotal": "93.00",
+      "address": "",
+      "paymentMethod": "",
+      "date": "2025-11-22T03:01:08.185Z"
+    }
+  ],
+  "history": [
+    {
+      "id": "08bf",
+      "idUser": "d9d1",
+      "cart": {
+        "id": "1e79",
+        "idUser": "d9d1",
+        "items": [
+          {
+            "id": "b0221472-13e6-48ca-8a21-0646fa449ce3",
+            "idUser": "d9d1",
+            "customizedOffer": {
+              "offer": {
+                "id": "1",
+                "name": "Pizza de Calabresa",
+                "priceBase": "27.00",
+                "description": "Calabresa bem temperada, cebolas douradas, orégano e mussarela derretida.",
+                "images": [
+                  "https://cantinagiovannifreddo.com.br/wp-content/uploads/2023/09/PIZZA-DE-CALABRESA.webp"
+                ],
+                "customizationOptions": [
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "21",
+                  "11",
+                  "12",
+                  "13",
+                  "14",
+                  "15",
+                  "16",
+                  "17",
+                  "18",
+                  "20"
+                ],
+                "ingredients": [
+                  "1",
+                  "4",
+                  "19",
+                  "14",
+                  "20"
+                ]
+              },
+              "selectedCustomizations": [
+                {
+                  "id": "14",
+                  "type": "BORDA",
+                  "name": "Borda Catupiry",
+                  "value": "5.00"
+                },
+                {
+                  "id": "17",
+                  "type": "MASSA",
+                  "name": "Massa Grossa",
+                  "value": "2.00"
+                },
+                {
+                  "id": "18",
+                  "type": "MOLHO",
+                  "name": "Molho de Tomate",
+                  "value": "1.50"
+                },
+                {
+                  "id": "5",
+                  "type": "EXTRA",
+                  "name": "Calabresa Extra",
+                  "value": "5.00"
+                },
+                {
+                  "id": "4",
+                  "type": "EXTRA",
+                  "name": "Mussarela Extra",
+                  "value": "6.00"
+                }
+              ]
+            },
+            "quantity": "2",
+            "subtotal": "93.00"
+          }
+        ],
+        "valueTotal": "93.00",
+        "address": "Rua Teste, 123",
+        "paymentMethod": "credito",
+        "date": "2025-11-22T21:52:18.784Z"
+      },
+      "status": "Preparando"
+    }
   ]
 }
