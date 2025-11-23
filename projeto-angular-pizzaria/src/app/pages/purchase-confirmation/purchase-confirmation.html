@@ -1,19 +1,11 @@
 <section class="purchase-confirmation">
   <div class="confirmation-box">
-    <h1>✅ Compra Finalizada!</h1>
-    <p>Obrigado por seu pedido{{ ', ' + userName || '.' }}.</p>
+    <h1>Compra Realizada com Sucesso!</h1>
+    <p>Obrigado pela preferência ☺️</p>
 
-    <div class="order-summary">
-      <h2>Resumo do Pedido</h2>
-      <p><strong>Total:</strong> R$ {{ cart?.valueTotal }}</p>
-      <p><strong>Forma de Pagamento:</strong> {{ cart?.paymentMethod }}</p>
-      <p><strong>Endereço de Entrega:</strong> {{ cart?.address }}</p>
-      <p><strong>Data do Pedido:</strong> {{ cart?.date }}</p>
-    </div>
+    <p>Seu pedido está sendo preparado. <br />Você será notificado quando estiver a caminho!</p>
 
-    <p>Seu pedido está sendo preparado. Você será notificado quando estiver a caminho!</p>
-
-    <button routerLink="/home" class="btn">Ver mais ofertas</button>
+    <button routerLink="/offers" class="btn">Ver mais ofertas</button>
     <button routerLink="/history" class="btn">Histórico</button>
   </div>
 </section>

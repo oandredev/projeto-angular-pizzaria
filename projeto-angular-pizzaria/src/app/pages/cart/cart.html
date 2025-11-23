@@ -53,7 +53,7 @@
     </ng-template>
   </div>
 
-  <aside class="payment-area">
+  <aside *ngIf="cart && cart.items?.length" class="payment-area">
     <h2>Pagamento</h2>
 
     <div class="payment-options">
@@ -79,7 +79,7 @@
         <option [value]="0" disabled selected>Selecione a quantidade de parcelas</option>
 
         <option *ngFor="let p of [1, 2, 3, 4, 5, 6]" [value]="p">
-          {{ p }}x de {{ +(cart?.valueTotal ?? 0) / p | number : '1.2-2' }}
+          {{ p }}x de {{ +(cart.valueTotal ?? 0) / p | number : '1.2-2' }}
         </option>
       </select>
     </div>

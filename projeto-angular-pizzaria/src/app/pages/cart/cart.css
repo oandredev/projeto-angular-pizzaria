@@ -1,20 +1,26 @@
 #cartPage {
-  display: grid;
-  grid-template-columns: 1fr 360px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 2rem;
   max-width: 1300px;
   margin: 2rem auto;
   padding: 0 1rem;
-  align-items: flex-start;
+}
+
+.cart-area {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
 }
 
 .cart-area h1 {
   margin-bottom: 1rem;
   font-size: 1.8rem;
+  text-align: center;
 }
 
 /* Table  */
-
 .cart-table {
   width: 100%;
   border-collapse: collapse;
@@ -75,7 +81,6 @@
 }
 
 /* Qtd. Area*/
-
 .qtd-area-inner {
   display: flex;
   justify-content: space-between;
@@ -101,7 +106,7 @@
 }
 
 .qtd-btn.plus:hover {
-  background: #016330;
+  background: #007539;
 }
 
 .qtd-btn.minus {
@@ -149,6 +154,7 @@
   background: #ce2b37;
   transform: scale(0.98);
 }
+
 /*==========================*/
 
 #cartTotalBox {
@@ -198,6 +204,8 @@
 }
 
 .payment-area {
+  width: 360px;
+  flex-shrink: 0;
   position: sticky;
   top: 2rem;
   background: #fff;
@@ -208,7 +216,6 @@
   border-bottom: 5px solid #ce2b37;
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
-  margin-top: 5.4rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -227,7 +234,6 @@
 }
 
 /* Address input */
-
 .address-input {
   width: 100%;
   padding: 0.9rem 1rem;
@@ -250,7 +256,6 @@
 }
 
 /* Button Finish */
-
 .finish-btn {
   background: #004f26;
   color: #fff;
@@ -271,7 +276,7 @@
 }
 
 .finish-btn:enabled:hover {
-  background: rgb(1, 99, 48);
+  background: #007539;
   transform: scale(1);
 }
 
