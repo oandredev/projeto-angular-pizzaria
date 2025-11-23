@@ -163,11 +163,9 @@ export class CartView implements OnInit {
 
     this.historyService.saveHistory(newHistory).subscribe({
       next: () => {
-        // Limpa carrinho local e backend
         this.cartService.clearCart().subscribe({
           next: (updatedCart) => {
-            this.cart = updatedCart; // cart agora vazio
-            // redireciona
+            this.cart = updatedCart;
             if (this.paymentMethod === 'pix') {
               this.router.navigate(['/paymentQRCode']);
             } else {
