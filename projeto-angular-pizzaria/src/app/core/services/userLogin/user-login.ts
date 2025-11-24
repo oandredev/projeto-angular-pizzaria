@@ -29,6 +29,8 @@ export class UserLoginService {
   }
 
   logout() {
+    this._loggedUser.next(null);
+
     return this.setUser(null);
   }
 

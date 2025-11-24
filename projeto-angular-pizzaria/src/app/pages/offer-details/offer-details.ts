@@ -6,6 +6,7 @@ import { OffersService } from '../../core/services/offers/offers';
 import { UserLoginService } from '../../core/services/userLogin/user-login';
 import { CartService } from '../../core/services/cart/cart-service';
 import { Offer, CustomizationOptions, CustomizedOffer } from '../../core/types/types';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-offer-details',
@@ -160,19 +161,26 @@ export class OfferDetails implements OnInit {
   }
 
   addToCart() {
-    this.loginService.isLogged().subscribe((isLoggedIn: boolean) => {
-      if (isLoggedIn && this.isFormValid) {
-        const customizedOffer: CustomizedOffer = {
-          offer: this.offer!,
-          selectedCustomizations: this.customizationsSelecteds,
-        };
+    this.loginService
+      .isLogged()
+      .pipe(take(1))
+      .subscribe((isLoggedIn) => {
+        // Sai silenciosamente se estiver deslogado.
+        if (!isLoggedIn) {
+          alert('Você não está logado. Faça login para adicionar ao carrinho');
+          return;
+        }
+        // Só adiciona ao carrinho se o form estiver OK
+        if (this.isFormValid) {
+          const customizedOffer: CustomizedOffer = {
+            offer: this.offer!,
+            selectedCustomizations: this.customizationsSelecteds,
+          };
 
-        this.cartService.addItem(customizedOffer).subscribe(() => {
-          console.log('Item adicionado!');
-        });
-      } else {
-        alert('Você não está logado. Faça login para adicionar ao carrinho');
-      }
-    });
+          this.cartService.addItem(customizedOffer).subscribe(() => {
+            console.log('Item adicionado!');
+          });
+        }
+      });
   }
 }
