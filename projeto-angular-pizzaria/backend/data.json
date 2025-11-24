@@ -1,10 +1,10 @@
 {
   "loggedUser": {
-    "id": "eef8",
-    "name": "André Rodrigues",
-    "email": "andre@pizzaly.com",
-    "password": "Teste12345Aa.",
-    "cpf": "97405488064"
+    "id": "bf22",
+    "name": "Fernanda M",
+    "email": "fernanda.m@pizzaly.com.br",
+    "password": "Fe123456@",
+    "cpf": "41618938177"
   },
   "users": [
     {
@@ -380,6 +380,15 @@
       "address": "",
       "paymentMethod": "",
       "date": ""
+    },
+    {
+      "id": "e765",
+      "idUser": "bf22",
+      "items": [],
+      "valueTotal": "0.00",
+      "address": "",
+      "paymentMethod": "",
+      "date": ""
     }
   ],
   "history": [
@@ -466,6 +475,607 @@
         "address": "T",
         "paymentMethod": "credito",
         "date": "23/11/2025, 15:46"
+      },
+      "status": "Preparando"
+    },
+    {
+      "id": "6c98",
+      "idUser": "bf22",
+      "cart": {
+        "id": "e765",
+        "idUser": "bf22",
+        "items": [
+          {
+            "idUser": "bf22",
+            "customizedOffer": {
+              "offer": {
+                "id": "1",
+                "name": "Pizza de Calabresa",
+                "priceBase": "27.00",
+                "description": "Calabresa bem temperada, cebolas douradas, orégano e mussarela derretida.",
+                "images": [
+                  "https://cantinagiovannifreddo.com.br/wp-content/uploads/2023/09/PIZZA-DE-CALABRESA.webp"
+                ],
+                "customizationOptions": [
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "21",
+                  "11",
+                  "12",
+                  "13",
+                  "14",
+                  "15",
+                  "16",
+                  "17",
+                  "18",
+                  "20"
+                ],
+                "ingredients": [
+                  "1",
+                  "4",
+                  "19",
+                  "14",
+                  "20"
+                ]
+              },
+              "selectedCustomizations": [
+                {
+                  "id": "12",
+                  "type": "BORDA",
+                  "name": "Normal",
+                  "value": "0.00"
+                },
+                {
+                  "id": "16",
+                  "type": "MASSA",
+                  "name": "Massa Tradicional",
+                  "value": "0.00"
+                },
+                {
+                  "id": "20",
+                  "type": "MOLHO",
+                  "name": "Molho Barbecue",
+                  "value": "2.00"
+                },
+                {
+                  "id": "4",
+                  "type": "EXTRA",
+                  "name": "Mussarela Extra",
+                  "value": "6.00"
+                },
+                {
+                  "id": "3",
+                  "type": "SEM",
+                  "name": "Sem Orégano",
+                  "value": "0.00"
+                }
+              ]
+            },
+            "quantity": "1",
+            "subtotal": "35.00"
+          },
+          {
+            "idUser": "bf22",
+            "customizedOffer": {
+              "offer": {
+                "id": "1",
+                "name": "Pizza de Calabresa",
+                "priceBase": "27.00",
+                "description": "Calabresa bem temperada, cebolas douradas, orégano e mussarela derretida.",
+                "images": [
+                  "https://cantinagiovannifreddo.com.br/wp-content/uploads/2023/09/PIZZA-DE-CALABRESA.webp"
+                ],
+                "customizationOptions": [
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "21",
+                  "11",
+                  "12",
+                  "13",
+                  "14",
+                  "15",
+                  "16",
+                  "17",
+                  "18",
+                  "20"
+                ],
+                "ingredients": [
+                  "1",
+                  "4",
+                  "19",
+                  "14",
+                  "20"
+                ]
+              },
+              "selectedCustomizations": [
+                {
+                  "id": "16",
+                  "type": "MASSA",
+                  "name": "Massa Tradicional",
+                  "value": "0.00"
+                },
+                {
+                  "id": "20",
+                  "type": "MOLHO",
+                  "name": "Molho Barbecue",
+                  "value": "2.00"
+                },
+                {
+                  "id": "3",
+                  "type": "SEM",
+                  "name": "Sem Orégano",
+                  "value": "0.00"
+                },
+                {
+                  "id": "6",
+                  "type": "EXTRA",
+                  "name": "Bacon Extra",
+                  "value": "5.00"
+                },
+                {
+                  "id": "5",
+                  "type": "EXTRA",
+                  "name": "Calabresa Extra",
+                  "value": "5.00"
+                },
+                {
+                  "id": "13",
+                  "type": "BORDA",
+                  "name": "Borda Cheddar",
+                  "value": "4.00"
+                }
+              ]
+            },
+            "quantity": "1",
+            "subtotal": "43.00"
+          }
+        ],
+        "valueTotal": "78.00",
+        "address": "Rua estevão ",
+        "paymentMethod": "debito",
+        "date": "24/11/2025, 11:09"
+      },
+      "status": "Preparando"
+    },
+    {
+      "id": "7f5c",
+      "idUser": "bf22",
+      "cart": {
+        "id": "e765",
+        "idUser": "bf22",
+        "items": [
+          {
+            "idUser": "bf22",
+            "customizedOffer": {
+              "offer": {
+                "id": "2",
+                "name": "Pizza Margherita",
+                "priceBase": "25.00",
+                "description": "Mussarela, tomate fresco, manjericão aromático e azeite.",
+                "images": [
+                  "https://www.receitasnestle.com.br/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/494feec171f5683665eba434d22e52f5.webp?itok=n3xpYgtR"
+                ],
+                "customizationOptions": [
+                  "1",
+                  "12",
+                  "13",
+                  "14",
+                  "15",
+                  "16",
+                  "17",
+                  "18",
+                  "19",
+                  "20",
+                  "9",
+                  "10",
+                  "11"
+                ],
+                "ingredients": [
+                  "1",
+                  "4",
+                  "9",
+                  "10",
+                  "11"
+                ]
+              },
+              "selectedCustomizations": [
+                {
+                  "id": "12",
+                  "type": "BORDA",
+                  "name": "Normal",
+                  "value": "0.00"
+                },
+                {
+                  "id": "15",
+                  "type": "MASSA",
+                  "name": "Massa Fina",
+                  "value": "0.00"
+                },
+                {
+                  "id": "18",
+                  "type": "MOLHO",
+                  "name": "Molho de Tomate",
+                  "value": "1.50"
+                },
+                {
+                  "id": "9",
+                  "type": "EXTRA",
+                  "name": "Tomate Extra",
+                  "value": "2.00"
+                },
+                {
+                  "id": "10",
+                  "type": "EXTRA",
+                  "name": "Manjericão Extra",
+                  "value": "1.50"
+                },
+                {
+                  "id": "11",
+                  "type": "EXTRA",
+                  "name": "Azeitona Extra",
+                  "value": "2.00"
+                }
+              ]
+            },
+            "quantity": "1",
+            "subtotal": "32.00"
+          },
+          {
+            "idUser": "bf22",
+            "customizedOffer": {
+              "offer": {
+                "id": "2",
+                "name": "Pizza Margherita",
+                "priceBase": "25.00",
+                "description": "Mussarela, tomate fresco, manjericão aromático e azeite.",
+                "images": [
+                  "https://www.receitasnestle.com.br/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/494feec171f5683665eba434d22e52f5.webp?itok=n3xpYgtR"
+                ],
+                "customizationOptions": [
+                  "1",
+                  "12",
+                  "13",
+                  "14",
+                  "15",
+                  "16",
+                  "17",
+                  "18",
+                  "19",
+                  "20",
+                  "9",
+                  "10",
+                  "11"
+                ],
+                "ingredients": [
+                  "1",
+                  "4",
+                  "9",
+                  "10",
+                  "11"
+                ]
+              },
+              "selectedCustomizations": [
+                {
+                  "id": "12",
+                  "type": "BORDA",
+                  "name": "Normal",
+                  "value": "0.00"
+                },
+                {
+                  "id": "17",
+                  "type": "MASSA",
+                  "name": "Massa Grossa",
+                  "value": "2.00"
+                },
+                {
+                  "id": "19",
+                  "type": "MOLHO",
+                  "name": "Molho Branco",
+                  "value": "1.50"
+                }
+              ]
+            },
+            "quantity": "2",
+            "subtotal": "57.00"
+          },
+          {
+            "idUser": "bf22",
+            "customizedOffer": {
+              "offer": {
+                "id": "1",
+                "name": "Pizza de Calabresa",
+                "priceBase": "27.00",
+                "description": "Calabresa bem temperada, cebolas douradas, orégano e mussarela derretida.",
+                "images": [
+                  "https://cantinagiovannifreddo.com.br/wp-content/uploads/2023/09/PIZZA-DE-CALABRESA.webp"
+                ],
+                "customizationOptions": [
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "21",
+                  "11",
+                  "12",
+                  "13",
+                  "14",
+                  "15",
+                  "16",
+                  "17",
+                  "18",
+                  "20"
+                ],
+                "ingredients": [
+                  "1",
+                  "4",
+                  "19",
+                  "14",
+                  "20"
+                ]
+              },
+              "selectedCustomizations": [
+                {
+                  "id": "12",
+                  "type": "BORDA",
+                  "name": "Normal",
+                  "value": "0.00"
+                },
+                {
+                  "id": "21",
+                  "type": "MOLHO",
+                  "name": "Sem Molho",
+                  "value": "0.00"
+                },
+                {
+                  "id": "16",
+                  "type": "MASSA",
+                  "name": "Massa Tradicional",
+                  "value": "0.00"
+                }
+              ]
+            },
+            "quantity": "1",
+            "subtotal": "27.00"
+          }
+        ],
+        "valueTotal": "116.00",
+        "address": "eeee",
+        "paymentMethod": "credito",
+        "date": "24/11/2025, 11:26"
+      },
+      "status": "Preparando"
+    },
+    {
+      "id": "d6e1",
+      "idUser": "bf22",
+      "cart": {
+        "id": "e765",
+        "idUser": "bf22",
+        "items": [
+          {
+            "idUser": "bf22",
+            "customizedOffer": {
+              "offer": {
+                "id": "1",
+                "name": "Pizza de Calabresa",
+                "priceBase": "27.00",
+                "description": "Calabresa bem temperada, cebolas douradas, orégano e mussarela derretida.",
+                "images": [
+                  "https://cantinagiovannifreddo.com.br/wp-content/uploads/2023/09/PIZZA-DE-CALABRESA.webp"
+                ],
+                "customizationOptions": [
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "21",
+                  "11",
+                  "12",
+                  "13",
+                  "14",
+                  "15",
+                  "16",
+                  "17",
+                  "18",
+                  "20"
+                ],
+                "ingredients": [
+                  "1",
+                  "4",
+                  "19",
+                  "14",
+                  "20"
+                ]
+              },
+              "selectedCustomizations": [
+                {
+                  "id": "12",
+                  "type": "BORDA",
+                  "name": "Normal",
+                  "value": "0.00"
+                },
+                {
+                  "id": "15",
+                  "type": "MASSA",
+                  "name": "Massa Fina",
+                  "value": "0.00"
+                },
+                {
+                  "id": "21",
+                  "type": "MOLHO",
+                  "name": "Sem Molho",
+                  "value": "0.00"
+                },
+                {
+                  "id": "11",
+                  "type": "EXTRA",
+                  "name": "Azeitona Extra",
+                  "value": "2.00"
+                }
+              ]
+            },
+            "quantity": "1",
+            "subtotal": "29.00"
+          },
+          {
+            "idUser": "bf22",
+            "customizedOffer": {
+              "offer": {
+                "id": "2",
+                "name": "Pizza Margherita",
+                "priceBase": "25.00",
+                "description": "Mussarela, tomate fresco, manjericão aromático e azeite.",
+                "images": [
+                  "https://www.receitasnestle.com.br/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/494feec171f5683665eba434d22e52f5.webp?itok=n3xpYgtR"
+                ],
+                "customizationOptions": [
+                  "1",
+                  "12",
+                  "13",
+                  "14",
+                  "15",
+                  "16",
+                  "17",
+                  "18",
+                  "19",
+                  "20",
+                  "9",
+                  "10",
+                  "11"
+                ],
+                "ingredients": [
+                  "1",
+                  "4",
+                  "9",
+                  "10",
+                  "11"
+                ]
+              },
+              "selectedCustomizations": [
+                {
+                  "id": "14",
+                  "type": "BORDA",
+                  "name": "Borda Catupiry",
+                  "value": "5.00"
+                },
+                {
+                  "id": "17",
+                  "type": "MASSA",
+                  "name": "Massa Grossa",
+                  "value": "2.00"
+                },
+                {
+                  "id": "18",
+                  "type": "MOLHO",
+                  "name": "Molho de Tomate",
+                  "value": "1.50"
+                },
+                {
+                  "id": "9",
+                  "type": "EXTRA",
+                  "name": "Tomate Extra",
+                  "value": "2.00"
+                },
+                {
+                  "id": "10",
+                  "type": "EXTRA",
+                  "name": "Manjericão Extra",
+                  "value": "1.50"
+                },
+                {
+                  "id": "11",
+                  "type": "EXTRA",
+                  "name": "Azeitona Extra",
+                  "value": "2.00"
+                }
+              ]
+            },
+            "quantity": "1",
+            "subtotal": "39.00"
+          }
+        ],
+        "valueTotal": "68.00",
+        "address": "rua casa 98",
+        "paymentMethod": "pix",
+        "date": "24/11/2025, 12:04"
+      },
+      "status": "Preparando"
+    },
+    {
+      "id": "f74c",
+      "idUser": "bf22",
+      "cart": {
+        "id": "e765",
+        "idUser": "bf22",
+        "items": [
+          {
+            "idUser": "bf22",
+            "customizedOffer": {
+              "offer": {
+                "id": "1",
+                "name": "Pizza de Calabresa",
+                "priceBase": "27.00",
+                "description": "Calabresa bem temperada, cebolas douradas, orégano e mussarela derretida.",
+                "images": [
+                  "https://cantinagiovannifreddo.com.br/wp-content/uploads/2023/09/PIZZA-DE-CALABRESA.webp"
+                ],
+                "customizationOptions": [
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "21",
+                  "11",
+                  "12",
+                  "13",
+                  "14",
+                  "15",
+                  "16",
+                  "17",
+                  "18",
+                  "20"
+                ],
+                "ingredients": [
+                  "1",
+                  "4",
+                  "19",
+                  "14",
+                  "20"
+                ]
+              },
+              "selectedCustomizations": [
+                {
+                  "id": "12",
+                  "type": "BORDA",
+                  "name": "Normal",
+                  "value": "0.00"
+                },
+                {
+                  "id": "16",
+                  "type": "MASSA",
+                  "name": "Massa Tradicional",
+                  "value": "0.00"
+                },
+                {
+                  "id": "20",
+                  "type": "MOLHO",
+                  "name": "Molho Barbecue",
+                  "value": "2.00"
+                }
+              ]
+            },
+            "quantity": "1",
+            "subtotal": "29.00"
+          }
+        ],
+        "valueTotal": "29.00",
+        "address": "rua torta",
+        "paymentMethod": "debito",
+        "date": "24/11/2025, 12:05"
       },
       "status": "Preparando"
     }
