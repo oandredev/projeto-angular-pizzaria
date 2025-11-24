@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cart, CartItem, CustomizedOffer } from '../../types/types';
-import { Observable, switchMap, map, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap, map, throwError } from 'rxjs';
 import { UserLoginService } from '../userLogin/user-login';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  // APIs
   private cartAPI = 'http://localhost:3000/cart';
 
-  // Vars
   private loggedUserId: string | null = null;
+  cartCounter: BehaviorSubject<string> = new BehaviorSubject<string>('0');
 
   constructor(private http: HttpClient, private loginService: UserLoginService) {
     this.loginService._loggedUser.subscribe((user) => {
@@ -20,7 +19,7 @@ export class CartService {
     });
   }
 
-  /*==================================================== */
+  /* ==================================================== */
 
   addItem(customizedOffer: CustomizedOffer): Observable<Cart> {
     if (!this.loggedUserId) {
@@ -28,6 +27,7 @@ export class CartService {
     }
 
     const newItem: CartItem = {
+      id: crypto.randomUUID(), // <-- SEMPRE TEM ID
       idUser: this.loggedUserId,
       customizedOffer,
       quantity: '1',
@@ -37,7 +37,7 @@ export class CartService {
     return this.addItemForUser(this.loggedUserId, newItem);
   }
 
-  /*==================================================== */
+  /* ==================================================== */
 
   private addItemForUser(idUser: string, item: CartItem): Observable<Cart> {
     return this.getCartByUser(idUser).pipe(
@@ -53,7 +53,7 @@ export class CartService {
     );
   }
 
-  /*==================================================== */
+  /* ==================================================== */
 
   private addOrUpdateItem(cart: Cart, item: CartItem): Observable<Cart> {
     const items = [...(cart.items ?? [])];
@@ -82,10 +82,12 @@ export class CartService {
       valueTotal: String(this.calculateTotal(items).toFixed(2)),
     };
 
-    return this.http.put<Cart>(`${this.cartAPI}/${cart.id}`, updated);
+    return this.http
+      .put<Cart>(`${this.cartAPI}/${cart.id}`, updated)
+      .pipe(switchMap((res) => this.updateCartCounter().pipe(map(() => res))));
   }
 
-  /*==================================================== */
+  /* ==================================================== */
 
   private createCart(idUser: string): Observable<Cart> {
     const payload: Omit<Cart, 'id'> = {
@@ -97,10 +99,12 @@ export class CartService {
       date: '',
     };
 
-    return this.http.post<Cart>(this.cartAPI, payload);
+    return this.http
+      .post<Cart>(this.cartAPI, payload)
+      .pipe(switchMap((res) => this.updateCartCounter().pipe(map(() => res))));
   }
 
-  /*==================================================== */
+  /* ==================================================== */
 
   clearCart(): Observable<Cart> {
     if (!this.loggedUserId) return throwError(() => new Error('Usuário não logado.'));
@@ -115,12 +119,14 @@ export class CartService {
           valueTotal: '0.00',
         };
 
-        return this.http.put<Cart>(`${this.cartAPI}/${cart.id}`, updated);
+        return this.http
+          .put<Cart>(`${this.cartAPI}/${cart.id}`, updated)
+          .pipe(switchMap((res) => this.updateCartCounter().pipe(map(() => res))));
       })
     );
   }
 
-  /*==================================================== */
+  /* ==================================================== */
 
   private getCartByUser(idUser: string): Observable<Cart | null> {
     return this.http
@@ -130,24 +136,24 @@ export class CartService {
 
   getCartOfLoggedUser() {
     if (!this.loggedUserId) return throwError(() => new Error('Usuário não logado.'));
+
+    this.updateCartCounter().subscribe();
+
     return this.getCartByUser(this.loggedUserId);
   }
 
-  /*==================================================== */
+  /* ==================================================== */
 
   private parsePrice(value: any): number {
     if (value === null || value === undefined) return 0;
 
     let str = String(value).trim();
-
     str = str.replace('R$', '').replace(/\s/g, '');
     str = str.replace(',', '.');
 
     const n = Number(str);
     return isNaN(n) ? 0 : n;
   }
-
-  /*==================================================== */
 
   private calculateItemSubtotal(item: CartItem): number {
     const offer = item.customizedOffer.offer;
@@ -169,7 +175,7 @@ export class CartService {
     return items.reduce((acc, item) => acc + this.calculateItemSubtotal(item), 0);
   }
 
-  /*==================================================== */
+  /* ==================================================== */
 
   updateCartItem(item: CartItem): Observable<Cart> {
     if (!this.loggedUserId) return throwError(() => new Error('Usuário não logado.'));
@@ -180,7 +186,6 @@ export class CartService {
 
         const items = [...(cart.items ?? [])];
         const index = items.findIndex((i) => i.id === item.id);
-
         if (index === -1) return throwError(() => new Error('Item não encontrado no carrinho.'));
 
         items[index].quantity = String(item.quantity);
@@ -192,28 +197,29 @@ export class CartService {
           valueTotal: String(this.calculateTotal(items).toFixed(2)),
         };
 
-        const dateFormated = new Intl.DateTimeFormat('pt-BR', {
-          dateStyle: 'short',
-          timeStyle: 'short',
-        }).format(new Date());
-
-        cart.date = String(dateFormated);
-
-        return this.http.put<Cart>(`${this.cartAPI}/${cart.id}`, updated);
+        return this.http
+          .put<Cart>(`${this.cartAPI}/${cart.id}`, updated)
+          .pipe(switchMap((res) => this.updateCartCounter().pipe(map(() => res))));
       })
     );
   }
 
-  /*==================================================== */
+  /* ==================================================== */
 
   removeCartItem(itemId: string): Observable<Cart> {
-    if (!this.loggedUserId) return throwError(() => new Error('Usuário não logado.'));
+    if (!this.loggedUserId) {
+      return throwError(() => new Error('Usuário não logado.'));
+    }
 
     return this.getCartByUser(this.loggedUserId).pipe(
       switchMap((cart) => {
-        if (!cart) return throwError(() => new Error('Carrinho não encontrado.'));
+        if (!cart) {
+          return throwError(() => new Error('Carrinho não encontrado.'));
+        }
 
-        const items = (cart.items ?? []).filter((i) => i.id !== itemId);
+        const targetId = String(itemId);
+
+        const items = (cart.items ?? []).filter((i) => String(i.id) !== targetId);
 
         const updated: Cart = {
           ...cart,
@@ -221,7 +227,29 @@ export class CartService {
           valueTotal: String(this.calculateTotal(items).toFixed(2)),
         };
 
-        return this.http.put<Cart>(`${this.cartAPI}/${cart.id}`, updated);
+        return this.http
+          .put<Cart>(`${this.cartAPI}/${cart.id}`, updated)
+          .pipe(switchMap((res) => this.updateCartCounter().pipe(map(() => res))));
+      })
+    );
+  }
+
+  /* ==================================================== */
+
+  updateCartCounter(): Observable<number> {
+    if (!this.loggedUserId) {
+      return throwError(() => new Error('Usuário não logado.'));
+    }
+
+    return this.getCartByUser(this.loggedUserId).pipe(
+      map((cart) => {
+        const count =
+          !cart || !cart.items
+            ? 0
+            : cart.items.reduce((acc, item) => acc + Number(item.quantity), 0);
+
+        this.cartCounter.next(String(count));
+        return count;
       })
     );
   }

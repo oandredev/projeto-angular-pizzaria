@@ -35,11 +35,11 @@ export interface CustomizedOffer {
   offer: Offer | null;
   selectedCustomizations: CustomizationOptions[];
 }
- 
+
 /*-----------------------------------------------------------------------------------*/
 
 export interface CartItem {
-  id?: string;
+  id: string;
   idUser: string;
   customizedOffer: CustomizedOffer;
   quantity: string;
