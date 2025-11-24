@@ -80,4 +80,17 @@ export class History {
 
     return base + customValue;
   }
+
+  formatPaymentMethod(method?: string): string {
+    switch (method?.toLowerCase()) {
+      case 'pix':
+        return 'PIX';
+      case 'credito':
+        return 'Cartão de Crédito';
+      case 'debito':
+        return 'Cartão de Débito';
+      default:
+        return method?.toUpperCase() ?? '';
+    }
+  }
 }
