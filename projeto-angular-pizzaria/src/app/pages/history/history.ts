@@ -33,7 +33,7 @@ export class History {
     console.log('Carregando histórico de compras do usuário...');
     this.historyService.getHistoryByUser().subscribe({
       next: (data: HistoryT[]) => {
-        this.historyList = data;
+        this.historyList = data.slice().reverse();
         this.isLoading = false;
         console.log('Histórico de compras carregado:', this.historyList);
       },

@@ -8,7 +8,7 @@ André Rodrigues
 
 Fernanda Souza
 
-### Versões do Projeto:
+### Versões utilizadas no Projeto:
 
 - NODE: v22.18.0
 
