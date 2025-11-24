@@ -8,6 +8,7 @@ import { UserLoginService } from '../userLogin/user-login';
   providedIn: 'root',
 })
 export class CartService {
+  /* APIs */
   private cartAPI = 'http://localhost:3000/cart';
 
   private loggedUserId: string | null = null;
@@ -218,7 +219,6 @@ export class CartService {
         }
 
         const targetId = String(itemId);
-
         const items = (cart.items ?? []).filter((i) => String(i.id) !== targetId);
 
         const updated: Cart = {

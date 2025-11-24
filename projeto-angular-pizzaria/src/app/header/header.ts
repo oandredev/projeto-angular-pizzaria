@@ -21,13 +21,13 @@ export class Header implements OnInit {
   ) {}
 
   ngOnInit() {
-    /** CART */
+    /* CART */
     this.cartService.cartCounter.subscribe((value) => {
       console.log('Quantidade:', value);
       this.cartCounter = value;
     });
 
-    /** 🔥 USER  */
+    /* USER  */
     this.loginService._loggedUser.subscribe((user) => {
       this.loggedUser = user;
       this.updateHeader();
@@ -36,6 +36,8 @@ export class Header implements OnInit {
         this.cartService.updateCartCounter().subscribe();
       }
     });
+
+    this.loginService.getLoggedUser().subscribe(() => this.updateHeader());
   }
 
   updateHeader() {

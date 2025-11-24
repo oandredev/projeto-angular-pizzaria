@@ -1,6 +1,13 @@
 {
   "loggedUser": {
-    "id": 1
+    "id": 1,
+    "user": {
+      "id": "eef8",
+      "name": "André Rodrigues",
+      "email": "andre@pizzaly.com",
+      "password": "Teste12345Aa.",
+      "cpf": "97405488064"
+    }
   },
   "users": [
     {

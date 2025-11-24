@@ -7,6 +7,7 @@ import { User } from '../../types/types';
   providedIn: 'root',
 })
 export class UserLoginService {
+  /* APIs */
   private registerAPI = `http://localhost:3000/users`;
   private loginAPI = `http://localhost:3000/loggedUser`;
 
@@ -22,23 +23,26 @@ export class UserLoginService {
     );
   }
 
-  setUser(user: User | null) {
-    return this.http
-      .put(`${this.loginAPI}`, { id: 1, ...user })
-      .pipe(tap(() => this._loggedUser.next(user)));
+  setUser(user: User | null): Observable<any> {
+    const payload = { id: 1, user };
+
+    return this.http.put(this.loginAPI, payload).pipe(tap(() => this._loggedUser.next(user)));
   }
 
-  logout() {
-    this._loggedUser.next(null);
+  logout(): Observable<any> {
+    const payload = { id: 1, user: null };
 
-    return this.setUser(null);
+    return this.http.put(this.loginAPI, payload).pipe(tap(() => this._loggedUser.next(null)));
   }
 
   isLogged(): Observable<boolean> {
     return this._loggedUser.asObservable().pipe(map((user) => user !== null));
   }
 
-  getLoggedUser(): User | null {
-    return this._loggedUser.value;
+  getLoggedUser(): Observable<User | null> {
+    return this.http.get<{ id: number; user?: User | null }>(this.loginAPI).pipe(
+      map((data) => data.user ?? null),
+      tap((user) => this._loggedUser.next(user))
+    );
   }
 }

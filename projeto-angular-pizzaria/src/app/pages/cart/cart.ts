@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CartService } from '../../core/services/cart/cart-service';
 import { HistoryService } from '../../core/services/history/history-service';
 import { UserLoginService } from '../../core/services/userLogin/user-login';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrl: './cart.css',
   imports: [CommonModule, FormsModule],
 })
-export class CartView implements OnInit {
+export class CartView {
   /*Vars */
   private loggedUserId: string | null = null;
   cart: Cart | null = null;
@@ -33,11 +33,12 @@ export class CartView implements OnInit {
   ) {
     this.loginService._loggedUser.subscribe((user) => {
       this.loggedUserId = user?.id ?? null;
-    });
-  }
 
-  ngOnInit(): void {
-    this.loadCart();
+      // Depends of logged user
+      if (this.loggedUserId) {
+        this.loadCart();
+      }
+    });
   }
 
   loadCart() {
