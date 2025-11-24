@@ -1,0 +1,215 @@
+/* history.component.css */
+
+/* --- Estilos Replicados do Carrinho (Header e Layout Geral) --- */
+
+.header-container {
+    background-color: #0c6a23; /* Verde escuro */
+    color: white;
+    padding: 10px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover, nav a.active {
+    color: #ff9900; /* Laranja/Amarelo Pizzaly */
+}
+
+.cart-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* --- Estilos Específicos do Histórico --- */
+
+.history-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #f7f7f7;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-header h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.card-header p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.detail-group {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+}
+
+.detail-group p {
+    margin: 5px 0;
+}
+
+/* --- Tabela de Itens (Replicando o Estilo da Tabela do Carrinho) --- */
+
+.cart-table {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #0c6a23;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.cart-row {
+    display: grid;
+    grid-template-columns: 3fr 0.5fr 1fr 1fr; /* Colunas: Item | Qtd | Valor Base | Subtotal */
+    padding: 12px 15px;
+    align-items: center;
+}
+
+.header-row {
+    background-color: #0c6a23; /* Fundo verde do cabeçalho */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.item-row {
+    border-bottom: 1px solid #eee;
+}
+
+.item-row:last-child {
+    border-bottom: none;
+}
+
+.col-item {
+    font-weight: 500;
+}
+
+.customization-details {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.col-qty, .col-value-base, .col-subtotal {
+    text-align: right;
+}
+
+/* --- Rodapé do Card do Histórico --- */
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f7f7f7;
+    border-top: 1px solid #ddd;
+    border-radius: 0 0 8px 8px;
+}
+
+.card-footer p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.total-value {
+    color: #e74c3c; /* Cor de destaque (vermelho/laranja) */
+}
+
+.btn-reorder {
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-reorder:hover {
+    background-color: #e68a00;
+}
+
+/* Estilo para estado vazio */
+.empty-state {
+    text-align: center;
+    padding: 50px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    margin-top: 50px;
+}
+
+.empty-state p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn-offers {
+    display: inline-block;
+    background-color: #0c6a23;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-offers:hover {
+    background-color: #09501a;
+}
+
