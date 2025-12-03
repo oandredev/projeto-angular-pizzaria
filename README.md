@@ -110,11 +110,11 @@ Demonstra domínio de:
 
 ---
 
-# 📸 **Exemplos Visuais**
+## 📸 **Exemplos Visuais**
 
 ### 🧑‍🍳 Tela de Cadastro
 
-<p><img src="./demonstration/demo-signin.gif" style="border-radius:12px;" /></p>
+<p><img src="./demonstration/demo-signin.gif" style="border-radius:12px; max-width="720"" /></p>
 
 ### 🧑‍🍳 Tela de Login
 
