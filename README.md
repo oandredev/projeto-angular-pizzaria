@@ -1,113 +1,137 @@
-## Projeto Angular + Json-Server para a matéria de Projeto Integrador 2 do curso de TADS.
+### **Versões utilizadas no Projeto**
 
-### Tema: Pizzaria
+- **Node:** v22.18.0
+- **NPM:** v11.6.0
+- **Angular/CLI:** v20.3.1
+- **TSC:** v5.9.2
+- **JSON-Server:** v1.0.0-beta.3
 
-### Integrantes:
+---
 
-André Rodrigues
+# **Projeto – Pizzaly** <img src="./demonstration/logo.png" height="40">
 
-Fernanda Souza
+Aplicação web desenvolvida em dupla como requisito da disciplina de **Projeto Integrador** do curso de **TADS – Senac**.
 
-### Versões utilizadas no Projeto:
+## **Integrantes**
 
-- NODE: v22.18.0
+- André Rodrigues
+- Fernanda Souza
 
-- NPM: v11.6.0
+---
 
-- ANGULAR/CLI: v20.3.1
+## **Visão Geral**
 
-- TSC: v5.9.2
+A **Pizzaly** é uma aplicação web com temática italiana que simula o sistema completo de uma pizzaria — catálogo, customização, pedidos e mais.
 
-- JSON-SERVER: v1.0.0-beta.3
+Todo o frontend foi desenvolvido em **Angular**, enquanto o backend é simulado usando **JSON-Server** para fornecer uma API REST local.
 
-<hr>
+---
 
-### Comandos Git:
+## **Objetivo**
 
-Clonar Repositório
+Construir uma aplicação funcional integrando **Angular** + **JSON-Server**, entregando:
 
-```bash
-git clone https://github.com/oandredev/projeto-angular-pizzaria
-```
+- Fluxo completo de compra
+- Visualização e customização de pizzas
+- Carrinho
+- Finalização de pedido
+- Roteamento dinâmico
+- CRUD completo via API fake
 
-Trocar de Branch
+---
 
-```bash
-git checkout main
-```
+# **Funcionalidades**
 
-Trocar de Branch e Criar uma nova
+## 🍕 **Catálogo de Pizzas**
 
-```bash
-git checkout branch feat/nova-feature
-```
+- Listagem geral
+- Detalhes da pizza
+- Exibição de preços, tamanhos e categorias
 
-<hr>
+---
 
-Sincronizar com a branch main (remota)
+## 🧀 **Montagem Personalizada**
 
-```bash
-git pull origin main
-```
+- Seleção de massa, borda e adicionais
+- Adição/remoção de customizações
+- Atualização dinâmica do preço
+- Consumo dos dados via JSON-Server
 
-OBS: Caso alterações ocorram na main durante o seu trabalho, significa que sua branch é main "antiga" do que main, logo para evitar conflitos futuros, use os seguintes comandos para sincronizar a main com seu código atual (mesmo que não tem sido alterados os mesmos arquivos)
+---
 
-```bash
-git fetch origin
-```
+## 🛒 **Carrinho & Pedido**
 
-```bash
-git merge origin/main
-```
+- Salvamento automático
+- Cálculo de subtotal e total
+- Finalização completa do pedido
+- Diferentes métodos de pagamento com redirecionamento dinâmico
 
-Visualizar branch atual
+---
 
-```bash
-git branch
-```
+## ✔️ **Validações**
 
-<hr>
+Todos os campos que dependem de entrada do usuário contam com validações reais, incluindo cálculo de CPF válido.
 
-### ENVIAR
+Campos validados:
 
-Adicionar alterações (com . (ponto) irá todos os arquivos, caso queira algo especifico escreve o nome no lugar do ponto)
+- Nome
+- Email
+- CPF
+- Senha
+- Customizações mínimas das pizzas
+- Endereço e método de pagamento no checkout
 
-```bash
-git add .
-```
+---
 
-Mensagem do Commit
+## 💾 **Persistência**
 
-```bash
-git commit -m "Cria header inicial"
+Toda a aplicação utiliza um único arquivo `data.json`, contendo:
 
-```
+- Usuários cadastrados
+- Pizzas, ingredientes e customizações
+- Ofertas
+- Carrinho
+- Histórico completo de compras
 
-Envia as alterações para o Git, onde o destino é a NOVA BRANCH que foi criada localmente e que agora vai se tornar remota também
+Essa abordagem torna os testes simples e práticos: **um único servidor, um único arquivo, todos os endpoints**.
 
-```bash
-git push origin feature/header
-```
+---
 
-<hr>
+# **Resumo**
 
-### IMPORTANTE:
+O projeto oferece uma experiência completa que simula um sistema real de pizzaria.  
+Demonstra domínio de:
 
-Para cada funcionalidade que for alterar gere uma nova branch com esse padrão feat/nomeDaAlteracao, onde feat representa feature, pode usar fix (correção) ou outros:
+- CRUD com Angular
+- Integração com JSON-Server
+- Validações avançadas
+- Persistência local
+- Organização modular e boas práticas
 
-- feat → nova funcionalidade
-- fix → correção de bug
-- docs → alteração apenas na documentação
-- style → mudanças de formatação/código que não afetam lógica
-- refactor → mudanças de código sem alteração de comportamento
-- perf → melhoria de desempenho
-- test → adição/alteração de testes
-- build → mudanças no build ou dependências
-- ci → mudanças em pipelines de CI/CD
-- chore → manutenção ou tarefas não relacionadas ao código
-- revert → desfaz um commit anterior
+---
 
-### DICAS:
+# 📸 **Exemplos Visuais**
 
-FETCH → Apenas busca atualizações remotas (refresh)
-PULL → Busca e aplica as atualizações na branch atual
+### 🧑‍🍳 Tela de Cadastro
+
+<p><img src="./demonstration/demo-signin.gif" style="border-radius:12px;" /></p>
+
+### 🧑‍🍳 Tela de Login
+
+<p><img src="./demonstration/demo-login.gif" style="border-radius:12px;" /></p>
+
+### 🍕 Catálogo de Pizzas
+
+<p><img src="./demonstration/demo-offers.gif" style="border-radius:12px;" /></p>
+
+### 🧀 Detalhes / Montagem da Pizza
+
+<p><img src="./demonstration/demo-offer-customization.gif" style="border-radius:12px;" /></p>
+
+### 💳 Pagamento / Finalização
+
+<p><img src="./demonstration/demo-payment.gif" style="border-radius:12px;" /></p>
+
+### 🧾 Histórico de Pedidos
+
+<p><img src="./demonstration/demo-history.gif" style="border-radius:12px;" /></p>
